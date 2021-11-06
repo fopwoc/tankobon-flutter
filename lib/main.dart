@@ -1,115 +1,172 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:manga_reader/manga_list/manga_list.dart';
+import 'package:manga_reader/manga_list/widget/manga.dart';
+import 'package:manga_reader/manga_reader/widgets/manga_reader_content.dart';
+import 'package:manga_reader/manga_reader/widgets/manga_reader_gallery.dart';
+import 'package:manga_reader/manga_view/manga_view.dart';
+import 'package:manga_reader/manga_view/widget/manga_view_list.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const MaterialApp(
+      title: 'Navigation Basics',
+      home: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    MangaReaderContent testManga = MangaReaderContent(
+      chapter: [
+        MangaReaderChapter(
+          chapterTitle: "Том 1 Глава 8",
+          page: [
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_000.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_000.jpg",
+              pageTag: 0,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_001.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_001.jpg",
+              pageTag: 1,
+            ),
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_002.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_002.jpg",
+              pageTag: 2,
+            ),
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_003.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_003.jpg",
+              pageTag: 3,
+            ),
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_004.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618397_ubunchu_v1_ch8/ubunchu_v1_ch8_004.jpg",
+              pageTag: 4,
             ),
           ],
         ),
+        MangaReaderChapter(
+          chapterTitle: "Том 1 Глава 7",
+          page: [
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618425_ubunchu_v1_ch7/ubunchu_v1_ch7_000.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618425_ubunchu_v1_ch7/ubunchu_v1_ch7_000.jpg",
+              pageTag: 5,
+            ),
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618425_ubunchu_v1_ch7/ubunchu_v1_ch7_001.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618425_ubunchu_v1_ch7/ubunchu_v1_ch7_001.jpg",
+              pageTag: 6,
+            ),
+            MangaReaderPage(
+              pageUrl: "https://img2.manga-chan.me/manga/u/1315618425_ubunchu_v1_ch7/ubunchu_v1_ch7_002.jpg",
+              thumbnailUrl:
+                  "https://im4.manga-chan.me/manganew_thumbs_retina/u/1315618425_ubunchu_v1_ch7/ubunchu_v1_ch7_002.jpg",
+              pageTag: 7,
+            ),
+          ],
+        ),
+      ],
+    );
+
+    final List<MangaViewListItem> chapterList = [
+      MangaViewListItem(
+        title: "Том 1  Глава 8   Кто сказал \"МУ\"?",
+        date: "2011-07-27",
+        onClick: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MangaReaderGallery(
+                mangaContent: testManga,
+              ),
+            ),
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      const MangaViewListItem(title: "Том 1  Глава 7   ", date: "2011-07-27"),
+      const MangaViewListItem(title: "Том 1  Глава 6   Апгрейд в летнюю ночь", date: "2011-07-27"),
+      const MangaViewListItem(title: "Том 1  Глава 5   Большая сестра следит за тобой!", date: "2011-07-27"),
+      const MangaViewListItem(title: "Том 1  Глава 4   История трёх кроликов", date: "2011-07-27"),
+      const MangaViewListItem(title: "Том 1  Глава 3   Проблемы? Пора поюзать форум", date: "2011-07-27"),
+      const MangaViewListItem(title: "Том 1  Глава 2   ", date: "2011-07-27"),
+      const MangaViewListItem(title: "Том 1  Глава 1   ", date: "2011-07-27"),
+    ];
+
+    final List<Manga> mangaRead = [
+      Manga(
+        title: "Ubunchu! (Убунчу!)",
+        url: "https://imgcover.manga-chan.me/showfull_retina/uploads/posts/2011-09/thumbs/1315618354_ubunchu.jpg",
+        onClick: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              // builder: (context) => MangaReaderGallery(
+              //   mangaContent: testManga,
+              // ),
+              builder: (context) => MangaView(
+                  title: "Ubunchu! (Убунчу!)",
+                  coverUrl:
+                      "https://imgcover.manga-chan.me/showfull_retina/uploads/posts/2011-09/thumbs/1315618354_ubunchu.jpg",
+                  author: "	﻿Seo Hiroshi",
+                  status: "1 том, выпуск продолжается",
+                  description:
+                      "Школьный компьютерный клуб разделён на три лагеря: сторонники Windows, поклонники Linux и пользователи Macintosh. И даже тот факт, что народу в этом клубе - три человека, считая председателя, не мешает им вести полномасштабные битвы (в масштабах клубной комнаты) за право поставить свою любимую систему на новенький четырёхъядерный компьютер.",
+                  total: "8 глав",
+                  chapterList: chapterList),
+            ),
+          );
+        },
+      ),
+      const Manga(
+          title: "Demon Incidents (Инцидент Кэмоно)",
+          url: "https://imgcover.manga-chan.me/showfull_retina/uploads/posts/2017-03/thumbs/1490629254_00a.jpg",
+          last: 5),
+      const Manga(
+          title: "Ijiranaide, Nagatoro-san (Не издевайся, Нагаторо-сан)",
+          url: "https://imgcover.manga-chan.me/showfull_retina/uploads/posts/2017-11/thumbs/1510928199_f-list.jpg",
+          last: 24),
+      const Manga(
+          title: "The World God only Knows (Одному лишь Богу ведомый мир)",
+          url: "https://imgcover.manga-chan.me/showfull_retina/uploads/posts/2012-07/thumbs/1342196249_i133139.jpg",
+          last: 120),
+      const Manga(
+        title: "Land of the Lustrous (Страна самоцветов)",
+        url: "https://imgcover.manga-chan.me/showfull_retina/uploads/posts/2014-02/thumbs/1392293364_i177955.jpg",
+      ),
+    ];
+
+    return MaterialApp(
+      title: "Manga reader demo",
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Manga reader demo"),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(child: MangaList(mangaList: mangaRead)),
+          ),
+        ),
+      ),
     );
   }
 }

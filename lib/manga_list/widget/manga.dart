@@ -4,15 +4,16 @@ import 'package:manga_reader/widget/manga_image.dart';
 import 'package:manga_reader/widget/text_pill.dart';
 
 class Manga extends StatelessWidget {
-  const Manga({Key? key, required this.title, required this.url, this.rate, this.last}) : super(key: key);
+  const Manga({Key? key, required this.title, required this.url, this.rate, this.last, this.onClick}) : super(key: key);
 
   final String title;
   final String url;
   final int? rate;
   final int? last;
+  final VoidCallback? onClick;
 
-  final double height = 220;
-  final double width = 150;
+  final double height = 220 * 0.85;
+  final double width = 150 * 0.85;
   final BorderRadius borderRadius = const BorderRadius.all(Radius.circular(5));
 
   @override
@@ -91,7 +92,7 @@ class Manga extends StatelessWidget {
             Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {},
+                onTap: onClick,
                 child: SizedBox(
                   height: height,
                   width: width,
