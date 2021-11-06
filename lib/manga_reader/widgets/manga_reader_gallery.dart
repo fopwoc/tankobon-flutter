@@ -36,41 +36,41 @@ class MangaReaderGallery extends HookWidget {
       );
     }
 
-    return Column(
-      children: [
-        Checkbox(
-            value: isVertical.value,
-            onChanged: (v) {
-              isVertical.value = v!;
-            }),
-        Wrap(
-          children: [
-            ...mangaContent.chapter
-                .map(
-                  (chapter) => Column(
-                    children: [
-                      Text(chapter.chapterTitle),
-                      Wrap(
-                        children: [
-                          ...chapter.page
-                              .map(
-                                (page) => MangaReaderThumbnail(
-                                  item: page,
-                                  onTap: () {
-                                    open(context, page.pageTag);
-                                  },
-                                ),
-                              )
-                              .toList(),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-                .toList(),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Manga reader demo"),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Wrap(
+            children: [
+              ...mangaContent.chapter
+                  .map(
+                    (chapter) => Column(
+                      children: [
+                        Text(chapter.chapterTitle),
+                        Wrap(
+                          children: [
+                            ...chapter.page
+                                .map(
+                                  (page) => MangaReaderThumbnail(
+                                    item: page,
+                                    onTap: () {
+                                      open(context, page.pageTag);
+                                    },
+                                  ),
+                                )
+                                .toList(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                  .toList(),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 }
