@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manga_reader/manga_view/manga_view.dart';
 import 'package:manga_reader/manga_view/widget/manga_view_buttons.dart';
 import 'package:manga_reader/manga_view/widget/manga_view_description.dart';
 import 'package:manga_reader/manga_view/widget/manga_view_list.dart';
 import 'package:manga_reader/manga_view/widget/manga_view_title.dart';
-
-Widget view() => const MangaView();
 
 Widget title() => const Center(
       child: MangaViewTitle(

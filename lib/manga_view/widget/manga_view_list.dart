@@ -63,10 +63,11 @@ class MangaViewList extends HookWidget {
 }
 
 class MangaViewListItem extends StatelessWidget {
-  const MangaViewListItem({Key? key, required this.title, required this.date}) : super(key: key);
+  const MangaViewListItem({Key? key, required this.title, required this.date, this.onClick}) : super(key: key);
 
   final String title;
   final String date;
+  final VoidCallback? onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class MangaViewListItem extends StatelessWidget {
             children: [
               Expanded(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: onClick,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Column(
