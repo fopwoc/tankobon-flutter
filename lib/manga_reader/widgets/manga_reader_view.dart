@@ -5,7 +5,11 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 class MangaReaderView extends HookWidget {
-  const MangaReaderView({Key? key, required this.page, required this.initialIndex, this.isVertical = false})
+  const MangaReaderView(
+      {Key? key,
+      required this.page,
+      required this.initialIndex,
+      this.isVertical = false})
       : super(key: key);
   final List<MangaReaderPage> page;
   final int initialIndex;
@@ -33,18 +37,20 @@ class MangaReaderView extends HookWidget {
               builder: (BuildContext context, int index) {
                 return PhotoViewGalleryPageOptions(
                   imageProvider: pagesToImages(page)[index],
-                  initialScale: (MediaQuery.of(context).orientation == Orientation.portrait)
+                  initialScale: (MediaQuery.of(context).orientation ==
+                          Orientation.portrait)
                       ? PhotoViewComputedScale.contained
                       : PhotoViewComputedScale.covered,
                   minScale: PhotoViewComputedScale.contained,
-                  heroAttributes: PhotoViewHeroAttributes(tag: page[index].pageTag),
+                  heroAttributes:
+                      PhotoViewHeroAttributes(tag: page[index].pageTag),
                 );
               },
               itemCount: page.length,
               loadingBuilder: (context, event) => const Center(
                 child: SizedBox(
-                  width: 32.0,
-                  height: 32.0,
+                  width: 32,
+                  height: 32,
                   child: CircularProgressIndicator(),
                 ),
               ),
@@ -56,7 +62,7 @@ class MangaReaderView extends HookWidget {
               scrollDirection: isVertical ? Axis.vertical : Axis.horizontal,
             ),
             Container(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   InkWell(
@@ -64,19 +70,18 @@ class MangaReaderView extends HookWidget {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      "back",
+                      'back',
                       style: TextStyle(
                         color: Colors.blue,
-                        fontSize: 12.0,
+                        fontSize: 12,
                       ),
                     ),
                   ),
                   Text(
-                    "Image ${currentIndex.value + 1}",
+                    'Image ${currentIndex.value + 1}',
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 12.0,
-                      decoration: null,
+                      fontSize: 12,
                     ),
                   ),
                 ],

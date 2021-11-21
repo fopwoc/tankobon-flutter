@@ -22,8 +22,14 @@ class MangaViewTitle extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(5)),
-          child: MangaImage(
-            url: url,
+          child: SizedBox(
+            height: 180,
+            child: AspectRatio(
+              aspectRatio: 208 / 291,
+              child: MangaImage(
+                url: url,
+              ),
+            ),
           ),
         ),
         Expanded(
@@ -38,15 +44,24 @@ class MangaViewTitle extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline2!
+                          .copyWith(fontSize: 20),
                     ),
                     Text(
                       author,
-                      style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 12),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(fontSize: 12),
                     ),
                     Text(
                       status,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontSize: 12),
                     ),
                   ],
                 )
