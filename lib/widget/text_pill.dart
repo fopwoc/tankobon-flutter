@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TextPill extends StatelessWidget {
-  const TextPill({Key? key, required this.text, this.color = Colors.black87}) : super(key: key);
+  const TextPill({Key? key, required this.text, this.color = Colors.black87})
+      : super(key: key);
 
   final String text;
   final Color color;
@@ -23,7 +24,8 @@ class TextPill extends StatelessWidget {
           child: Text(
             text,
             maxLines: 1,
-            style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 11),
+            style:
+                TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 11),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 class MangaReaderPage {
-  MangaReaderPage({required this.pageUrl, this.thumbnailUrl, required this.pageTag});
+  MangaReaderPage(
+      {required this.pageUrl, this.thumbnailUrl, required this.pageTag});
   final String pageUrl;
   final String? thumbnailUrl;
   final int pageTag;

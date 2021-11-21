@@ -7,7 +7,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 enum MangaViewListSort { regular, reversed }
 
 class MangaViewList extends HookWidget {
-  const MangaViewList({Key? key, required this.itemList, required this.total}) : super(key: key);
+  const MangaViewList({Key? key, required this.itemList, required this.total})
+      : super(key: key);
 
   final List<MangaViewListItem> itemList;
   final String total;
@@ -16,14 +17,15 @@ class MangaViewList extends HookWidget {
   Widget build(BuildContext context) {
     final sort = useState(MangaViewListSort.regular);
 
-    final Map<MangaViewListSort, List<MangaViewListItem>> sortFromSort = {
+    final sortFromSort = <MangaViewListSort, List<MangaViewListItem>>{
       MangaViewListSort.regular: List.of(itemList),
       MangaViewListSort.reversed: List.of(itemList).reversed.toList(),
     };
 
-    final Map<MangaViewListSort, Widget> iconFromSort = {
+    final iconFromSort = <MangaViewListSort, Widget>{
       MangaViewListSort.regular: const Icon(Icons.sort),
-      MangaViewListSort.reversed: Transform.rotate(angle: 180 * pi / 180, child: const Icon(Icons.sort)),
+      MangaViewListSort.reversed: Transform.rotate(
+          angle: 180 * pi / 180, child: const Icon(Icons.sort)),
     };
 
     return Wrap(
@@ -38,7 +40,10 @@ class MangaViewList extends HookWidget {
                   Expanded(
                     child: Text(
                       total,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 16),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontSize: 16),
                     ),
                   ),
                   Material(
@@ -63,7 +68,9 @@ class MangaViewList extends HookWidget {
 }
 
 class MangaViewListItem extends StatelessWidget {
-  const MangaViewListItem({Key? key, required this.title, required this.date, this.onClick}) : super(key: key);
+  const MangaViewListItem(
+      {Key? key, required this.title, required this.date, this.onClick})
+      : super(key: key);
 
   final String title;
   final String date;
@@ -87,12 +94,18 @@ class MangaViewListItem extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(fontSize: 12),
                           maxLines: 1,
                         ),
                         Text(
                           date,
-                          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 12),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline2!
+                              .copyWith(fontSize: 12),
                         ),
                       ],
                     ),
