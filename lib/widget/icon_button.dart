@@ -5,7 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 enum MangaButtonStatus { idle, active, disable }
 
 class MangaButton extends HookWidget {
-  const MangaButton({Key? key, required this.icon, required this.text, this.onClick}) : super(key: key);
+  const MangaButton(
+      {Key? key, required this.icon, required this.text, this.onClick})
+      : super(key: key);
 
   final IconData icon;
   final String text;
@@ -15,7 +17,7 @@ class MangaButton extends HookWidget {
   Widget build(BuildContext context) {
     final status = useState(MangaButtonStatus.idle);
 
-    final Map<MangaButtonStatus, Color> colorFromStatus = {
+    final colorFromStatus = <MangaButtonStatus, Color>{
       MangaButtonStatus.idle: Theme.of(context).disabledColor,
       MangaButtonStatus.active: Theme.of(context).colorScheme.primary,
       MangaButtonStatus.disable: Theme.of(context).primaryColor,
@@ -29,7 +31,7 @@ class MangaButton extends HookWidget {
               : status.value = MangaButtonStatus.idle;
         },
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
             children: [
               Icon(

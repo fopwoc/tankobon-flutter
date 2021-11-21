@@ -10,13 +10,14 @@ class MangaViewButtons extends HookWidget {
   Widget build(BuildContext context) {
     return IntrinsicHeight(
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: const [
-          Expanded(child: MangaButton(icon: Icons.remove_red_eye, text: "Следить")),
-          Expanded(child: MangaButton(icon: Icons.bookmark, text: "Хочу прочитать")),
-          Expanded(child: MangaButton(icon: Icons.check, text: "Прочитано")),
-          Expanded(child: MangaButton(icon: Icons.favorite, text: "Избранное")),
+          Expanded(
+              child: MangaButton(icon: Icons.remove_red_eye, text: 'Следить')),
+          Expanded(
+              child: MangaButton(icon: Icons.bookmark, text: 'Хочу прочитать')),
+          Expanded(child: MangaButton(icon: Icons.check, text: 'Прочитано')),
+          Expanded(child: MangaButton(icon: Icons.favorite, text: 'Избранное')),
         ],
       ),
     );

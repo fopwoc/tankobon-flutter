@@ -17,7 +17,10 @@ class MangaViewDescription extends HookWidget {
                 Text(
                   text,
                   maxLines: 3,
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(fontSize: 12),
                 ),
                 InkWell(
                   onTap: () {
@@ -52,7 +55,10 @@ class MangaViewDescription extends HookWidget {
               },
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: 12),
               ),
             ),
     );
