@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-import 'manga_list_stories.dart';
-import 'manga_reader_stories.dart';
-import 'manga_stories.dart';
-import 'manga_view_stories.dart';
+import 'demo/stories_button.dart';
+import 'demo/stories_manga_cover.dart';
+import 'demo/stories_manga_cover_list.dart';
+import 'demo/stories_manga_detail.dart';
+import 'demo/stories_manga_detail_view.dart';
+import 'demo/stories_reader.dart';
+import 'demo/stories_reader_view.dart';
+import 'demo/stories_text_pill.dart';
 
 void main() {
   runApp(const Playground());
@@ -36,18 +40,38 @@ class Playground extends HookWidget {
       ],
       appInfo: AppInfo(name: 'Manga app'),
       lightTheme: ThemeData(primarySwatch: Colors.blue),
+      defaultTheme: ThemeMode.light,
       darkTheme: ThemeData.dark(),
       categories: [
         WidgetbookCategory(
-          name: 'widgets test',
+          name: 'Widgets',
           folders: [
             WidgetbookFolder(
-              name: 'manga',
+              name: 'Common elements',
               widgets: [
-                mangaStories(),
-                mangaListStories(),
-                mangaViewStories(),
-                mangaReaderStories(),
+                buttonStories(),
+                textPillStories(),
+              ],
+            ),
+            WidgetbookFolder(
+              name: 'Manga covers',
+              widgets: [
+                mangaCoverStories(),
+                mangaCoverListStories(),
+              ],
+            ),
+            WidgetbookFolder(
+              name: 'Manga details',
+              widgets: [
+                mangaDetailStories(),
+                mangaDetailViewStories(),
+              ],
+            ),
+            WidgetbookFolder(
+              name: 'Reader',
+              widgets: [
+                mangaReaderThumbnailStories(),
+                mangaReaderViewStories(),
               ],
             ),
           ],

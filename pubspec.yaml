@@ -1,30 +1,48 @@
-name: manga_reader
-description: Manga reader
+name: tankobon
+description: Tankōbon - a flutter manga reader app
+homepage: https://aspirin.moe
+repository: https://github.com/ASPIRINmoe/tankobon-flutter
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-version: 1.0.0+1
+version: 0.0.1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.15.1 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.4
   transparent_image: ^2.0.0
-  flutter_hooks: ^0.18.1
+  flutter_hooks: ^0.18.2
   photo_view: ^0.13.0
   layout: ^1.0.2
   flutter_staggered_animations: ^1.0.0
+  dio: ^4.0.4
+  provider: ^6.0.2
+  shared_preferences: ^2.0.12
+  json_serializable: ^6.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  widgetbook: ^1.0.1
+  build_runner: ^2.1.7
   flutter_lints: ^1.0.4
-  build_runner: ^2.1.5
   very_good_analysis: ^2.4.0
+  widgetbook: ^1.0.3
 
 flutter:
   uses-material-design: true
+
+json_serializable:
+  options:
+    any_map: true
+    checked: true
+    constructor: ""
+    create_factory: true
+    create_to_json: true
+    disallow_unrecognized_keys: false
+    explicit_to_json: true
+    field_rename: none
+    generic_argument_factories: false
+    ignore_unannotated: false
+    include_if_null: true
