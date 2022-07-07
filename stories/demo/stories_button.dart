@@ -12,7 +12,12 @@ WidgetbookWidget buttonStories() => WidgetbookWidget(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: const [
-                  Expanded(child: Button(icon: Icons.warning, text: 'button')),
+                  Expanded(
+                    child: Button(
+                      icon: Icons.warning,
+                      text: 'button',
+                    ),
+                  ),
                 ],
               ),
             ),
