@@ -1,0 +1,44 @@
+name: tankobon
+description: Tankōbon - a Flutter manga reader app.
+
+publish_to: 'none'
+
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  auto_route: ^4.2.1
+  json_annotation: ^4.6.0
+  freezed_annotation: ^2.1.0
+  provider: ^6.0.3
+  flutter_hooks: ^0.18.5+1
+  isar: 3.0.0-dev.8
+  isar_flutter_libs: 3.0.0-dev.8
+  dio: ^4.0.6
+  path_provider: ^2.0.11
+  flutter_platform_widgets: ^2.0.0
+  cupertino_icons: ^1.0.5
+  transparent_image: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^3.0.1
+  build_runner: ^2.2.0
+  isar_generator: 3.0.0-dev.8
+  json_serializable: ^6.3.1
+  freezed: ^2.1.0+1
+  auto_route_generator: ^4.2.0
+  #mocktail: ^0.3.0
+  widgetbook: ^2.4.1
+
+flutter:
+  uses-material-design: true
+  generate: true
