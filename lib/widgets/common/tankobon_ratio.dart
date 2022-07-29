@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+//tankobon size https://en.wikipedia.org/wiki/Tankōbon
 const double tankobonRatio = 13 / 18;
 
 class TankobonRatio extends StatelessWidget {
@@ -10,8 +11,7 @@ class TankobonRatio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio:
-          13 / 18, //tankobon size https://en.wikipedia.org/wiki/Tankōbon
+      aspectRatio: tankobonRatio,
       child: child,
     );
   }
