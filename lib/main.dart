@@ -18,9 +18,11 @@ void main() async {
       ],
       child: PlatformProvider(
         initialPlatform: TargetPlatform.iOS,
-        builder: (BuildContext context) => App(
-          appRouter: appRouter,
-        ),
+        builder: (BuildContext context) {
+          return App(
+            appRouter: appRouter,
+          );
+        },
       ),
     ),
   );
@@ -33,8 +35,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<GlobalState>().initGlobalState();
-
     return PlatformApp.router(
       localizationsDelegates: const [
         AppLocalizations.delegate,
