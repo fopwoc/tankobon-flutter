@@ -17,8 +17,8 @@ class MangaList extends StatelessWidget {
       },
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount < 2 ? 2 : crossAxisCount,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
+        crossAxisSpacing: 14,
+        mainAxisSpacing: 14,
         childAspectRatio: tankobonRatio,
       ),
     );

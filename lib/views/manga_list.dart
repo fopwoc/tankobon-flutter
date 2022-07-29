@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/api/models/manga.dart';
 import 'package:tankobon/api/services/manga.dart';
 import 'package:tankobon/l10n/l10n.dart';
+import 'package:tankobon/router/router.gr.dart';
 import 'package:tankobon/widgets/common/manga/manga.dart';
 import 'package:tankobon/widgets/list/manga_list.dart';
 
@@ -27,7 +29,12 @@ class MangaListView extends StatelessWidget {
                 return MangaList(
                   mangaList: [
                     ...?snapshot.data?.map(
-                      (e) => MangaCover(manga: e),
+                      (e) => MangaCover(
+                        manga: e,
+                        onClick: () => context.pushRoute(
+                          MangaView(uuid: e.id),
+                        ),
+                      ),
                     )
                   ],
                 );
