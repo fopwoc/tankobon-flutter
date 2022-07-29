@@ -6,9 +6,10 @@ import 'package:tankobon/widgets/common/tankobon_ratio.dart';
 import 'package:tankobon/widgets/common/text_pill.dart';
 
 class MangaCover extends StatelessWidget {
-  const MangaCover({super.key, required this.manga});
+  const MangaCover({super.key, required this.manga, required this.onClick});
 
   final Manga manga;
+  final void Function() onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class MangaCover extends StatelessWidget {
       ),
       title: manga.title,
       rating: '${manga.volume}',
+      onClick: onClick,
     );
   }
 }
