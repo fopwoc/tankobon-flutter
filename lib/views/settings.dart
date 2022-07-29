@@ -7,8 +7,8 @@ import 'package:tankobon/domain/repositories/instances.dart';
 import 'package:tankobon/domain/state/global_state.dart';
 import 'package:tankobon/router/router.gr.dart';
 
-class Page3 extends StatelessWidget {
-  const Page3({super.key});
+class SettingsView extends StatelessWidget {
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -10,9 +10,9 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsRouter(
       routes: const [
-        Route1(),
-        Route2(),
-        Route3(),
+        RecentView(),
+        MangaListView(),
+        SettingsView(),
       ],
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);
