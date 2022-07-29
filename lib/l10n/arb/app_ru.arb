@@ -1,7 +1,56 @@
 {
   "@@locale": "ru",
-  "counterAppBarTitle": "Название",
-  "@counterAppBarTitle": {
-    "description": "Текст, который показывается в названии"
+
+  "appName" : "Танкобон",
+
+  "loginInstanceFieldHint": "Адрес экземпляра",
+  "@loginInstanceFieldHint": {
+    "description": "Подсказка в текстовом поле для адреса экземпляра в форме логина"
+  },
+
+  "loginUsernameFieldHint": "Имя пользователя",
+  "@loginUsernameFieldHint": {
+    "description": "Подсказка в текстовом поле для имени пользователя в форме логина"
+  },
+
+  "loginPasswordFieldHint": "Пароль",
+  "@loginPasswordFieldHint": {
+    "description": "Подсказка в текстовом поле для пароля в форме логина"
+  },
+
+  "loginFormButton": "Войти",
+  "@loginFormButton": {
+    "description": "Текст на кнопке входа в форме входа"
+  },
+
+  "dashboardNavBarRecent": "Недавние",
+  "@dashboardNavBarRecent": {
+    "description": "Текст кнопки экрана недавних в навигационной панели на главной"
+  },
+
+  "dashboardNavBarList": "Экземпляр",
+  "@dashboardNavBarList": {
+    "description": "Текст кнопки экрана экземпляра в навигационной панели на главной"
+  },
+
+  "dashboardNavBarSettings": "Настройки",
+  "@dashboardNavBarSettings": {
+    "description": "Текст кнопки экрана настроек в навигационной панели на главной"
+  },
+
+  "dashboardAppBarRecent": "Недавние",
+  "@dashboardTitleRecent": {
+    "description": "Текст заголовка экрана недавних на главной"
+  },
+
+  "dashboardAppBarList": "Экземпляр",
+  "@dashboardAppBarList": {
+    "description": "Текст заголовка экрана экземпляра на главной"
+  },
+
+  "dashboardAppBarSettings": "Настройки",
+  "@dashboardAppBarSettings": {
+    "description": "Текст заголовка экрана настроек на главной"
   }
+
 }

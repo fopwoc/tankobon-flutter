@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tankobon/domain/repositories/current_instance.dart';
 import 'package:tankobon/domain/repositories/instances.dart';
 import 'package:tankobon/domain/state/global_state.dart';
+import 'package:tankobon/l10n/l10n.dart';
 import 'package:tankobon/router/router.gr.dart';
 
 class SettingsView extends StatelessWidget {
@@ -12,9 +13,11 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        title: PlatformText('title'),
+        title: PlatformText(l10n.dashboardNavBarSettings),
       ),
       body: Center(
         child: Column(
