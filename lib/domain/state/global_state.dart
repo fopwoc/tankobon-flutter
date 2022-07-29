@@ -21,11 +21,15 @@ class GlobalState extends ChangeNotifier {
   String? _globalState;
   String? get globalState => _globalState;
 
+  bool _hasInitialized = false;
+  bool get hasInitialized => _hasInitialized;
+
   void initGlobalState() {
     getTokenListRepository().then((value) {
       if (value.isNotEmpty) {
         getCurrentInstanceRepository().then((instance) {
           _globalState = instance;
+          _hasInitialized = true;
           notifyListeners();
         });
       } else {

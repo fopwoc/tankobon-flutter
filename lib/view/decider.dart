@@ -11,7 +11,18 @@ class DeciderView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<GlobalState>().globalState != null
+    final state = context.watch<GlobalState>();
+
+    useEffect(
+      () {
+        state.initGlobalState();
+        return null;
+      },
+      [],
+    );
+
+    context.watch<GlobalState>().hasInitialized &&
+            context.watch<GlobalState>().globalState != null
         ? context.router.replace(const DashboardView())
         : context.router.replace(const LoginView());
 
