@@ -64,7 +64,10 @@ class PureMangaCover extends StatelessWidget {
               fit: StackFit.expand,
               clipBehavior: Clip.antiAlias,
               children: [
-                img,
+                FittedBox(
+                  fit: BoxFit.fill,
+                  child: img,
+                ),
                 if (rating?.isNotEmpty ?? false)
                   Align(
                     alignment: Alignment.topRight,
@@ -94,8 +97,10 @@ class PureMangaCover extends StatelessWidget {
                       child: Text(
                         title,
                         maxLines: 2,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 12),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ),

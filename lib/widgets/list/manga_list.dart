@@ -8,13 +8,15 @@ class MangaList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final crossAxisCount = (MediaQuery.of(context).size.width / 180).round();
+
     return GridView.builder(
       itemCount: mangaList.length,
       itemBuilder: (BuildContext context, int index) {
         return mangaList[index];
       },
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount < 2 ? 2 : crossAxisCount,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
         childAspectRatio: tankobonRatio,
