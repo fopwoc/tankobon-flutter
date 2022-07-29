@@ -3,7 +3,7 @@ import 'package:tankobon/api/dio_client.dart';
 import 'package:tankobon/api/models/token.dart';
 import 'package:tankobon/domain/models/login.dart';
 
-Future<Token> login(LoginForm form) async {
+Future<Token> login(LoginPayload form) async {
   final response = await postURL(
     url: '${form.instance}/login',
     requestBody: Login(
