@@ -4,12 +4,12 @@ part 'login.freezed.dart';
 part 'login.g.dart';
 
 @freezed
-class LoginForm with _$LoginForm {
-  const factory LoginForm({
+class LoginPayload with _$LoginPayload {
+  const factory LoginPayload({
     required String instance,
     required String username,
     required String password,
-  }) = _LoginForm;
+  }) = _LoginPayload;
 }
 
 @freezed

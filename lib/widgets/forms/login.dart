@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/domain/hooks/spin.dart';
-import 'package:tankobon/domain/models/login.dart' as Form;
+import 'package:tankobon/domain/models/login.dart';
 import 'package:tankobon/widgets/common/spin_button.dart';
 
 class LoginForm extends HookWidget {
   const LoginForm({super.key, required this.callback});
 
-  final void Function(Form.LoginForm) callback;
+  final void Function(LoginPayload) callback;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class LoginForm extends HookWidget {
     final loginState = useSpin(() async {
       await Future(
         () => callback(
-          Form.LoginForm(
+          LoginPayload(
             instance: instanceText.value,
             username: loginText.value,
             password: passwordText.value,
