@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-class Page1 extends StatelessWidget {
-  const Page1({super.key});
+class RecentView extends StatelessWidget {
+  const RecentView({super.key});
 
   @override
   Widget build(BuildContext context) {
