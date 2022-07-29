@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/api/models/manga.dart';
 import 'package:tankobon/api/services/manga.dart';
+import 'package:tankobon/l10n/l10n.dart';
 import 'package:tankobon/widgets/common/manga/manga.dart';
 import 'package:tankobon/widgets/list/manga_list.dart';
 
@@ -10,9 +11,11 @@ class MangaListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        title: PlatformText('title'),
+        title: PlatformText(l10n.dashboardNavBarList),
       ),
       body: Padding(
         padding: const EdgeInsets.all(14),
