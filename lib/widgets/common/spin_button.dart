@@ -17,7 +17,7 @@ class SpinButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformElevatedButton(
       color: spin ? Colors.black12 : null,
-      onPressed: onClick,
+      onPressed: spin ? null : onClick,
       child: spin
           ? SizedBox(
               height: 22,

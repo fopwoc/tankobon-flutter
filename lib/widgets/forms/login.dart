@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/domain/hooks/spin.dart';
 import 'package:tankobon/domain/models/login.dart' as Form;
-import 'package:tankobon/widgets/spin_button.dart';
+import 'package:tankobon/widgets/common/spin_button.dart';
 
 class LoginForm extends HookWidget {
   const LoginForm({super.key, required this.callback});
