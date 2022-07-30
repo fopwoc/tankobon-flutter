@@ -10,7 +10,7 @@ Future<List<Manga>> getMangaList() async {
   if (token == null) throw FlutterError('getTokenRepository null');
 
   final response = await getURL(
-    url: '${token.url}/list',
+    url: '${token.url}/manga',
     token: token.accessToken,
   ).onError((error, stackTrace) => throw FlutterError('$error'));
 
