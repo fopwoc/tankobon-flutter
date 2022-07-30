@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -16,7 +18,9 @@ class LoginForm extends HookWidget {
     final l10n = context.l10n;
 
     final instanceController = useTextEditingController();
-    final instanceText = useState('http://localhost:8080');
+    final instanceText = Platform.isAndroid
+        ? useState('http://10.0.2.2:8080')
+        : useState('http://127.0.0.1:8080');
     instanceController.text = instanceText.value; //DELETE
 
     final loginController = useTextEditingController();
