@@ -16,11 +16,11 @@ class MangaImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<NetworkImage>(
+    return FutureBuilder<Image>(
       future: getThumbnailFromBackend(mangaId, volume, chapter),
-      builder: (BuildContext context, AsyncSnapshot<NetworkImage> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<Image> snapshot) {
         if (snapshot.hasData) {
-          return Image(image: snapshot.data!);
+          return snapshot.data!;
         } else if (snapshot.hasError) {
           return const Icon(Icons.error_outline);
         } else {
