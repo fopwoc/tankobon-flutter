@@ -20,7 +20,7 @@ jobs:
       - name: Install packages
         run: flutter pub get
       - name: Codegen
-        run: flutter packages pub run build_runner build
+        run: flutter packages pub run build_runner build --delete-conflicting-outputs
       - name: Linter
         run: flutter analyze --no-fatal-warnings --no-fatal-infos
       - name: Analyze Dart
