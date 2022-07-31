@@ -21,8 +21,9 @@ class DeciderView extends HookWidget {
       [],
     );
 
-    context.watch<GlobalState>().hasInitialized &&
-            context.watch<GlobalState>().globalState != null
+    Provider.of<GlobalState>(context).hasInitialized &&
+            Provider.of<GlobalState>(context, listen: false).currentInstance !=
+                null
         ? context.router.replace(const DashboardView())
         : context.router.replace(const LoginView());
 

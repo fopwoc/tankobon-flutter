@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:tankobon/domain/collections/current_instance.dart';
 import 'package:tankobon/domain/instances/isar.dart';
 
-Future<String> getCurrentInstanceRepository() async {
+Future<String> getCurrentInstanceDatabase() async {
   final result = await IsarClient().isar.currentInstances.get(0);
   if (result == null) throw FlutterError('message');
   return result.instanceId;
 }
 
-Future<void> setCurrentInstanceRepository(String? instanceId) async {
+Future<void> setCurrentInstanceDatabase(String? instanceId) async {
   if (instanceId == null) {
     await IsarClient().isar.writeTxn(() async {
       await IsarClient().isar.currentInstances.clear();

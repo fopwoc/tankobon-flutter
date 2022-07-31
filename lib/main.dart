@@ -17,7 +17,7 @@ void main() async {
         ChangeNotifierProvider<GlobalState>(create: (_) => GlobalState()),
       ],
       child: PlatformProvider(
-        initialPlatform: TargetPlatform.android,
+        initialPlatform: TargetPlatform.iOS,
         builder: (BuildContext context) {
           return App(
             appRouter: appRouter,

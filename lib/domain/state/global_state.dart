@@ -14,33 +14,33 @@
 // });
 
 import 'package:flutter/material.dart';
-import 'package:tankobon/domain/repositories/current_instance.dart';
-import 'package:tankobon/domain/repositories/instances.dart';
+import 'package:tankobon/domain/database/current_instance.dart';
+import 'package:tankobon/domain/database/instances.dart';
 
 class GlobalState extends ChangeNotifier {
-  String? _globalState;
-  String? get globalState => _globalState;
+  String? _currentInstance;
+  String? get currentInstance => _currentInstance;
 
   bool _hasInitialized = false;
   bool get hasInitialized => _hasInitialized;
 
   void initGlobalState() {
-    getTokenListRepository().then((value) {
+    getTokenListDatabase().then((value) {
       if (value.isNotEmpty) {
-        getCurrentInstanceRepository().then((instance) {
-          _globalState = instance;
+        getCurrentInstanceDatabase().then((instance) {
+          _currentInstance = instance;
           _hasInitialized = true;
           notifyListeners();
         });
       } else {
-        _globalState = null;
+        _currentInstance = null;
       }
     });
     //notifyListeners();
   }
 
   void setGlobalState(String? value) {
-    _globalState = value;
+    _currentInstance = value;
     notifyListeners();
   }
 }
