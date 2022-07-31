@@ -11,19 +11,35 @@ env:
   DOCKER_HUB: acetylsalicylicacid/${{ github.event.repository.name }}
 
 jobs:
-  lint:
-    name: Lint
+  analyze:
+    name: Analyze
     uses: ./.github/workflows/lint.yml
   build_android:
     name: Build android
-    needs: lint
-    runs-on: macos-latest
+    needs: analyze
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'temurin'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter packages pub run build_runner build
       - run: flutter build apk
       - run: flutter build appbundle
   build_ios:
     name: Build iOS
-    needs: lint
+    needs: analyze
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter packages pub run build_runner build
       - run: flutter build ios --release --no-codesign
