@@ -1,16 +1,25 @@
-name: Check the source code
+name: Setup and lint
 on:
   workflow_call:
 
 jobs:
   test:
-    name: Check the source code
-    runs-on: ubuntu-latest
+    name: Setup and lint
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'temurin'
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.0.5'
           channel: 'stable'
+          cache: true
+          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+          cache-path:
+            ${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:
       - name: Install packages
         run: flutter pub get
       - name: Codegen
