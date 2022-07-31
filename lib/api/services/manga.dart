@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tankobon/api/dio_client.dart';
 import 'package:tankobon/api/models/manga.dart';
-import 'package:tankobon/domain/repositories/current_instance.dart';
-import 'package:tankobon/domain/repositories/instances.dart';
+import 'package:tankobon/domain/database/current_instance.dart';
+import 'package:tankobon/domain/database/instances.dart';
 
 Future<List<Manga>> getMangaList() async {
-  final token = await getTokenRepository(await getCurrentInstanceRepository());
+  final token = await getTokenDatabase(await getCurrentInstanceDatabase());
 
   if (token == null) throw FlutterError('getTokenRepository null');
 
@@ -29,7 +29,7 @@ Future<Image> getImageFromBackend(
   int volume,
   int chapter,
 ) async {
-  final token = await getTokenRepository(await getCurrentInstanceRepository());
+  final token = await getTokenDatabase(await getCurrentInstanceDatabase());
 
   if (token == null) throw FlutterError('getTokenRepository null');
 
@@ -47,7 +47,7 @@ Future<NetworkImage> getThumbnailFromBackend(
   int volume,
   int chapter,
 ) async {
-  final token = await getTokenRepository(await getCurrentInstanceRepository());
+  final token = await getTokenDatabase(await getCurrentInstanceDatabase());
 
   if (token == null) throw FlutterError('getTokenRepository null');
 
