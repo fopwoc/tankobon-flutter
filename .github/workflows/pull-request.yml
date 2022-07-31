@@ -1,0 +1,10 @@
+name: Build pull request
+
+on:
+  pull_request:
+    types: [ opened, reopened ]
+
+jobs:
+  build:
+    name: Analyze
+    uses: ./.github/workflows/analyze.yml
