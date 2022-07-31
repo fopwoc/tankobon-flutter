@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tankobon/domain/collections/current_instance.dart';
-import 'package:tankobon/domain/instances/isar.dart';
+import 'package:tankobon/domain/singletone/isar.dart';
 
 Future<String> getCurrentInstanceDatabase() async {
   final result = await IsarClient().isar.currentInstances.get(0);
