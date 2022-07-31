@@ -34,6 +34,8 @@ class GlobalState extends ChangeNotifier {
         });
       } else {
         _currentInstance = null;
+        _hasInitialized = true;
+        notifyListeners();
       }
     });
     //notifyListeners();
