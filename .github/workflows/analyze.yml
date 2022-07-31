@@ -1,10 +1,11 @@
 name: Analyze
+
 on:
   workflow_call:
 
 jobs:
   test:
-    name: Analyze
+    name: Analyze and lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,9 +15,17 @@ jobs:
           cache: true
           cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
           cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+      - name: No analytics
+        run: dart --disable-analytics && flutter config --no-analytics # =)
       - name: Install packages
         run: flutter pub get
       - name: Codegen
         run: flutter packages pub run build_runner build
       - name: Linter
         run: flutter analyze --no-fatal-warnings --no-fatal-infos
+      - name: Run lint
+        uses: kitek/dartanalyzer-annotations-action@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          commit_sha: ${{ github.sha }}

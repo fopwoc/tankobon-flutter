@@ -27,6 +27,7 @@ jobs:
           cache: true
           cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
           cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+      - run: dart --disable-analytics && flutter config --no-analytics # =)
       - run: flutter pub get
       - run: flutter packages pub run build_runner build
       - run: flutter build apk
@@ -43,6 +44,7 @@ jobs:
           cache: true
           cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
           cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+      - run: dart --disable-analytics && flutter config --no-analytics # =)
       - run: flutter pub get
       - run: flutter packages pub run build_runner build
       - run: flutter build ios --release --no-codesign
