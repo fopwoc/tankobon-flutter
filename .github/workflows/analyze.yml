@@ -27,4 +27,4 @@ jobs:
         uses: zgosalvez/github-actions-analyze-dart@v1
         with:
           working-directory: lib
-          fail-on-warnings: true
+          fail-on-warnings: false
