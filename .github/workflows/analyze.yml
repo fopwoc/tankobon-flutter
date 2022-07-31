@@ -21,6 +21,10 @@ jobs:
         run: flutter pub get
       - name: Codegen
         run: flutter packages pub run build_runner build
+      - name: Run dependency validator
+        run: |
+          dart pub global activate dependency_validator
+          dart pub global run dependency_validator:dependency_validator
       - name: Linter
         run: flutter analyze --no-fatal-warnings --no-fatal-infos
       - name: Analyze Dart
@@ -32,3 +36,10 @@ jobs:
         uses: dart-code-checker/dart-code-metrics-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_request_comment: true
+          fatal_warnings: false
+          fatal_performance: true
+          fatal_style: true
+          check_unused_files: true
+      - name: Verify formatting
+        run: dart format --set-exit-if-changed .
