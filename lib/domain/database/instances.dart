@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import 'package:tankobon/api/models/token.dart';
 import 'package:tankobon/domain/collections/instance.dart';
 import 'package:tankobon/domain/database/current_instance.dart';
-import 'package:tankobon/domain/instances/isar.dart';
+import 'package:tankobon/domain/singletone/isar.dart';
 
 Future<List<Instance?>> getTokenListDatabase() async {
   return IsarClient().isar.instances.where().findAll();
@@ -37,7 +37,9 @@ Future<void> delTokenDatabase(String instanceId) async {
         .isar
         .instances
         .filter()
-        .instanceIdEqualTo(instanceId)
+        .instanceIdEqualTo(
+          instanceId,
+        )
         .deleteAll();
   });
 }

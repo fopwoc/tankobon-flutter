@@ -11,11 +11,13 @@ Future<void> loginInRepository(
   LoginPayload payload,
 ) async {
   final token = await login(payload);
-  print(token.instanceId);
   await addTokenDatabase(token, payload.instance);
   await setCurrentInstanceDatabase(token.instanceId);
-  Provider.of<GlobalState>(context, listen: false)
-      .setGlobalState(token.instanceId);
+
+  Provider.of<GlobalState>(
+    context,
+    listen: false,
+  ).setGlobalState(token.instanceId);
 }
 
 Future<void> loginOutRepository(
@@ -23,5 +25,8 @@ Future<void> loginOutRepository(
 ) async {
   await delTokenDatabase(await getCurrentInstanceDatabase());
   await setCurrentInstanceDatabase(null);
-  Provider.of<GlobalState>(context, listen: false).setGlobalState(null);
+  Provider.of<GlobalState>(
+    context,
+    listen: false,
+  ).setGlobalState(null);
 }

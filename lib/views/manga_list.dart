@@ -22,33 +22,32 @@ class MangaListView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(14),
         child: FutureBuilder<List<Manga>>(
-            future: getMangaList(),
-            builder:
-                (BuildContext context, AsyncSnapshot<List<Manga>> snapshot) {
-              if (snapshot.hasData) {
-                return MangaList(
-                  mangaList: [
-                    ...?snapshot.data?.map(
-                      (e) => MangaCover(
-                        manga: e,
-                        onClick: () => context.pushRoute(
-                          MangaView(uuid: e.id),
-                        ),
+          future: getMangaList(),
+          builder: (BuildContext context, AsyncSnapshot<List<Manga>> snapshot) {
+            if (snapshot.hasData) {
+              return MangaList(
+                mangaList: [
+                  ...?snapshot.data?.map(
+                    (e) => MangaCover(
+                      manga: e,
+                      onClick: () => context.pushRoute(
+                        MangaView(uuid: e.id),
                       ),
-                    )
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                print(snapshot.error);
-                return const Center(
-                  child: Icon(Icons.error_outline),
-                );
-              } else {
-                return Center(
-                  child: PlatformCircularProgressIndicator(),
-                );
-              }
-            }),
+                    ),
+                  )
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Icon(Icons.error_outline),
+              );
+            } else {
+              return Center(
+                child: PlatformCircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }
