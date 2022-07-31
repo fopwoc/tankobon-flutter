@@ -50,5 +50,5 @@ app.*.map.json
 **/*.gr.dart
 **/*.freezed.dart
 
-/android/app/src/main/res/drawable*/*.png
-ios/Runner/Assets.xcassets/*/*.png
+/android/app/src/main/res/*/*.png
+/ios/Runner/Assets.xcassets/*/*.png
