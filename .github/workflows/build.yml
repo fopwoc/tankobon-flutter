@@ -7,13 +7,10 @@ on:
     tags:
       - '*'
 
-env:
-  DOCKER_HUB: acetylsalicylicacid/${{ github.event.repository.name }}
-
 jobs:
   analyze:
     name: Analyze
-    uses: ./.github/workflows/lint.yml
+    uses: ./.github/workflows/analyze.yml
   build_android:
     name: Build android
     needs: analyze
