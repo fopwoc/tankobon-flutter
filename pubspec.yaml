@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.2.6
   intl: ^0.17.0
   auto_route: ^4.2.1
   json_annotation: ^4.6.0
@@ -37,9 +38,28 @@ dev_dependencies:
   json_serializable: ^6.3.1
   freezed: ^2.1.0+1
   auto_route_generator: ^4.2.0
+  flutter_launcher_icons: ^0.9.3
   widgetbook: ^2.4.1
 
 flutter:
   uses-material-design: true
   generate: true
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/icon/icon.png
+  adaptive_icon_background: "#FFE9DB"
+  adaptive_icon_foreground: assets/icon/icon_foreground.png
+
+flutter_native_splash:
+  color: "#FFE9DB"
+  image: assets/icon/icon_foreground.png
+  color_dark: "#1F1F20"
+  image_dark: assets/icon/icon_foreground_dark.png
+  android_12:
+    image: assets/icon/icon_foreground.png
+    icon_background_color: "#FFE9DB"
+    image_dark: assets/icon/icon_foreground_dark.png
+    icon_background_color_dark: "#1F1F20"
+  web: false
