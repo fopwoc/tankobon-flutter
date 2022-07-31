@@ -16,4 +16,4 @@ jobs:
       - name: Codegen
         run: flutter packages pub run build_runner build
       - name: Linter
-        run: flutter analyze
+        run: flutter analyze --no-fatal-warnings
