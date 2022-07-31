@@ -25,3 +25,6 @@ jobs:
         run: flutter analyze --no-fatal-warnings --no-fatal-infos
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v1
+        with:
+          working-directory: lib
+          fail-on-warnings: true
