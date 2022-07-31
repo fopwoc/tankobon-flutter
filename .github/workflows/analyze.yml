@@ -21,10 +21,6 @@ jobs:
         run: flutter pub get
       - name: Codegen
         run: flutter packages pub run build_runner build
-      - name: Run dependency validator
-        run: |
-          dart pub global activate dependency_validator
-          dart pub global run dependency_validator:dependency_validator
       - name: Linter
         run: flutter analyze --no-fatal-warnings --no-fatal-infos
       - name: Analyze Dart
