@@ -1,0 +1,19 @@
+name: Check the source code
+on:
+  workflow_call:
+
+jobs:
+  test:
+    name: Check the source code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.4'
+      - name: Install packages
+        run: flutter pub get
+      - name: Codegen
+        run: flutter packages pub run build_runner build
+      - name: Linter
+        run: flutter analyze
