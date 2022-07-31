@@ -31,7 +31,7 @@ class MangaListView extends StatelessWidget {
                     (e) => MangaCover(
                       manga: e,
                       onClick: () => context.pushRoute(
-                        MangaView(uuid: e.id),
+                        MangaView(manga: e),
                       ),
                     ),
                   )

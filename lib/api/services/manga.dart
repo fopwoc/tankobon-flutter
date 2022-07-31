@@ -33,16 +33,17 @@ Future<Image> getImageFromBackend(
 
   if (token == null) throw FlutterError('getTokenRepository null');
 
-  final response = await getURL(
-    url: '${token.url}/manga/$mangaId/$volume/$chapter',
-    token: token.accessToken,
-    contentType: 'image/jpeg',
-  ).onError((error, stackTrace) => throw FlutterError('$error'));
+  final image = Image.network(
+    '${token.url}/manga/$mangaId/$volume/$chapter',
+    headers: {
+      'authorization': 'Bearer ${token.accessToken}',
+    },
+  );
 
-  return response.data as Image;
+  return image;
 }
 
-Future<NetworkImage> getThumbnailFromBackend(
+Future<Image> getThumbnailFromBackend(
   String mangaId,
   int volume,
   int chapter,
@@ -51,13 +52,7 @@ Future<NetworkImage> getThumbnailFromBackend(
 
   if (token == null) throw FlutterError('getTokenRepository null');
 
-  // final response = await getURL(
-  //   url: '${token.url}/thumb/$mangaId/$volume/$chapter',
-  //   token: token.accessToken,
-  //   contentType: 'image/jpeg',
-  // ).onError((error, stackTrace) => throw FlutterError('$error'));
-
-  final image = NetworkImage(
+  final image = Image.network(
     '${token.url}/thumb/$mangaId/$volume/$chapter',
     headers: {
       'authorization': 'Bearer ${token.accessToken}',
