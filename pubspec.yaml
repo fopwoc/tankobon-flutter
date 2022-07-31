@@ -32,6 +32,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   very_good_analysis: ^3.0.1
+  dart_code_metrics: ^4.17.0
   build_runner: ^2.2.0
   isar_generator: 3.0.0-dev.8
   json_serializable: ^6.3.1
@@ -42,3 +43,25 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    maximum-nesting-level: 5
+    number-of-parameters: 4
+    source-lines-of-code: 50
+  metrics-exclude:
+    - test/**
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gr.dart"
+  rules:
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    - prefer-trailing-comma
+    - prefer-conditional-expressions
+    - no-equal-then-else
