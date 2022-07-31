@@ -30,8 +30,12 @@ jobs:
       - run: dart --disable-analytics && flutter config --no-analytics # =)
       - run: flutter pub get
       - run: flutter packages pub run build_runner build
-      - run: flutter build apk
-      - run: flutter build appbundle
+      - run: flutter build apk --release
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: |
+            build/app/outputs/apk/release/app-release.apk
   build_ios:
     name: Build iOS
     needs: analyze
