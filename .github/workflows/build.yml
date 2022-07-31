@@ -30,6 +30,7 @@ jobs:
       - run: dart --disable-analytics && flutter config --no-analytics # =)
       - run: flutter pub get
       - run: flutter packages pub run build_runner build
+      - run: flutter pub run flutter_launcher_icons:main && flutter pub run flutter_native_splash:create
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v3
         with:
@@ -51,4 +52,5 @@ jobs:
       - run: dart --disable-analytics && flutter config --no-analytics # =)
       - run: flutter pub get
       - run: flutter packages pub run build_runner build
+      - run: flutter pub run flutter_launcher_icons:main && flutter pub run flutter_native_splash:create
       - run: flutter build ios --release --no-codesign
