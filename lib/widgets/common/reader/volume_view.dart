@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:tankobon/api/models/manga.dart';
 import 'package:tankobon/widgets/common/manga/manga_image.dart';
+
+import '../../../router/router.gr.dart';
 
 class VolumeView extends StatelessWidget {
   const VolumeView({super.key, required this.manga});
@@ -14,9 +17,26 @@ class VolumeView extends StatelessWidget {
       children: [
         ...manga.volume.mapIndexed(
           (i, e) => SizedBox(
-              height: 180,
-              child: MangaImage(mangaId: manga.id, volume: i, chapter: 0)),
-        )
+            height: 180,
+            child: CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                context.pushRoute(
+                  GalleryView(
+                    manga: manga,
+                    volume: i,
+                    chapter: 0,
+                  ),
+                );
+              },
+              child: MangaImage(
+                mangaId: manga.id,
+                volume: i,
+                chapter: 0,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
