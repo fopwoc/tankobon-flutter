@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:tankobon/views/dashboard.dart';
 import 'package:tankobon/views/decider.dart';
+import 'package:tankobon/views/gallery.dart';
 import 'package:tankobon/views/login.dart';
 import 'package:tankobon/views/manga.dart';
 import 'package:tankobon/views/manga_list.dart';
@@ -24,6 +25,10 @@ import 'package:tankobon/views/settings.dart';
       ],
     ),
     AutoRoute(path: '/dashboard/view/:uuid', page: MangaView),
+    AutoRoute(
+      path: '/dashboard/view/:uuid/:volume/:chapter',
+      page: GalleryView,
+    ),
   ],
 )
 //class AppRouter extends _$AppRouter {}
