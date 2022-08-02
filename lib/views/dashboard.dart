@@ -11,13 +11,13 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return AutoTabsRouter(
+    return AutoTabsRouter.tabBar(
       routes: const [
         RecentView(),
         MangaListView(),
         SettingsView(),
       ],
-      builder: (context, child, animation) {
+      builder: (context, child, _) {
         final tabsRouter = AutoTabsRouter.of(context);
         return PlatformScaffold(
           body: child,

@@ -29,16 +29,13 @@ class GlobalState extends ChangeNotifier {
       if (value.isNotEmpty) {
         getCurrentInstanceDatabase().then((instance) {
           _currentInstance = instance;
-          _hasInitialized = true;
-          notifyListeners();
         });
       } else {
         _currentInstance = null;
-        _hasInitialized = true;
-        notifyListeners();
       }
+      _hasInitialized = true;
+      notifyListeners();
     });
-    //notifyListeners();
   }
 
   void setGlobalState(String? value) {
