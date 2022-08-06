@@ -1,10 +1,11 @@
-name: Build pull request
+name: Check pull request
 
 on:
   pull_request:
     types: [ opened, reopened ]
 
 jobs:
-  build:
-    name: Analyze
+  analyze:
     uses: ./.github/workflows/analyze.yml
+  lint:
+    uses: ./.github/workflows/lint.yml
