@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -21,20 +22,10 @@ class GalleryView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final reloadKey = useState(UniqueKey());
-    final mangaFuture = useMemoized(() async {
-      final list = List.generate(
-        manga.volume[volume],
-        (index) => getImageFromBackend(manga.id, volume, index),
-      );
-
-      final list2 = [];
-
-      for (var value in list) {
-        list2.add(await value);
-      }
-
-      return list2;
-    }, [reloadKey.value]);
+    final mangaFuture = useMemoized(
+      () => _getMangaImages(manga),
+      [reloadKey.value],
+    );
     final mangaSnapshot = useFuture<List<dynamic>>(mangaFuture);
 
     return PlatformScaffold(
@@ -47,11 +38,14 @@ class GalleryView extends HookWidget {
                   initialScale: PhotoViewComputedScale.contained,
                 );
               },
-              itemCount: manga.volume[volume],
-              loadingBuilder: (context, event) => Center(
-                child: Container(
-                  width: 20.0,
-                  height: 20.0,
+              itemCount: mangaSnapshot.data!.length,
+              pageController: PageController(
+                initialPage: _volumeFirstPageIndex(manga, volume),
+              ),
+              loadingBuilder: (context, event) => const Center(
+                child: SizedBox(
+                  width: 20,
+                  height: 20,
                   child: CircularProgressIndicator(),
                 ),
               ),
@@ -59,4 +53,29 @@ class GalleryView extends HookWidget {
           : Container(),
     );
   }
+}
+
+int _volumeFirstPageIndex(Manga manga, int volume) {
+  if (volume <= 0) return 0;
+  return manga.volume.slice(0, volume).reduce((a, b) => a + b);
+}
+
+Future<List<Image>> _getMangaImages(Manga manga) async {
+  final futureList = [
+    ...manga.volume.mapIndexed((index, element) {
+      final list = <Future<Image>>[];
+      for (var i = 0; i < element; i++) {
+        list.add(getImageFromBackend(manga.id, index, i));
+      }
+      return list;
+    }).flattened
+  ];
+
+  final list = <Image>[];
+
+  for (final element in futureList) {
+    list.add(await element);
+  }
+
+  return list;
 }
