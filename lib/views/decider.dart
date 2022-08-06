@@ -5,7 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tankobon/domain/state/global_state.dart';
-import 'package:tankobon/router/router.gr.dart';
+import 'package:tankobon/router/router.dart';
 
 class DeciderView extends HookWidget {
   const DeciderView({super.key});
@@ -26,8 +26,8 @@ class DeciderView extends HookWidget {
       if (state.hasInitialized) {
         FlutterNativeSplash.remove();
         state.currentInstance != null
-            ? context.router.replace(const DashboardView())
-            : context.router.replace(const LoginView());
+            ? context.router.replace(const DashboardViewRoute())
+            : context.router.replace(const LoginViewRoute());
       }
     }, [state.hasInitialized]);
 

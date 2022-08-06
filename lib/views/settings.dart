@@ -5,7 +5,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/domain/hooks/spin.dart';
 import 'package:tankobon/domain/repositories/login.dart';
 import 'package:tankobon/l10n/l10n.dart';
-import 'package:tankobon/router/router.gr.dart';
+import 'package:tankobon/router/router.dart';
 import 'package:tankobon/widgets/common/spin_button.dart';
 
 class SettingsView extends HookWidget {
@@ -17,7 +17,7 @@ class SettingsView extends HookWidget {
 
     final logoutState = useSpin(() async {
       await loginOutRepository(context);
-      await context.router.replace(const DeciderView());
+      await context.router.replace(const DeciderViewRoute());
     });
 
     return PlatformScaffold(

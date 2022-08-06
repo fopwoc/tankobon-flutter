@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/l10n/l10n.dart';
-import 'package:tankobon/router/router.gr.dart';
+import 'package:tankobon/router/router.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -13,9 +13,9 @@ class DashboardView extends StatelessWidget {
 
     return AutoTabsRouter.tabBar(
       routes: const [
-        RecentView(),
-        MangaListView(),
-        SettingsView(),
+        DeciderViewRoute(),
+        MangaListViewRoute(),
+        SettingsViewRoute(),
       ],
       builder: (context, child, _) {
         final tabsRouter = AutoTabsRouter.of(context);

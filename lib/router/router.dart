@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:tankobon/views/dashboard.dart';
 import 'package:tankobon/views/decider.dart';
 import 'package:tankobon/views/gallery.dart';
@@ -8,10 +9,9 @@ import 'package:tankobon/views/manga_list.dart';
 import 'package:tankobon/views/recent.dart';
 import 'package:tankobon/views/settings.dart';
 
-// part 'router.gr.dart';
+part 'router.gr.dart';
 
 @AdaptiveAutoRouter(
-  replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(path: '/', page: DeciderView, initial: true),
     AutoRoute(path: '/login', page: LoginView),
@@ -31,5 +31,5 @@ import 'package:tankobon/views/settings.dart';
     ),
   ],
 )
-//class AppRouter extends _$AppRouter {}
-class $AppRouter {}
+class AppRouter extends _$AppRouter {}
+//class $AppRouter {}

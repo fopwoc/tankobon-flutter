@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/domain/repositories/login.dart';
-import 'package:tankobon/router/router.gr.dart';
+import 'package:tankobon/router/router.dart';
 import 'package:tankobon/widgets/forms/login.dart';
 
 class LoginView extends StatelessWidget {
@@ -21,7 +21,7 @@ class LoginView extends StatelessWidget {
               child: LoginForm(
                 callback: (v) async {
                   await loginInRepository(context, v);
-                  await context.router.replace(const DeciderView());
+                  await context.router.replace(const DeciderViewRoute());
                 },
               ),
             ),

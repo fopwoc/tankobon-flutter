@@ -14,12 +14,3 @@ Future<Token> login(LoginPayload form) async {
 
   return Token.fromJson(response?.data as Map<String, dynamic>);
 }
-
-// Future<Token> list() async {
-//   final response = await getURL(
-//     url: '${form.instance}/login',
-//     token: '',
-//   ).onError((error, stackTrace) => throw FlutterError('$error'));
-//
-//   return Token.fromJson(response?.data as Map<String, dynamic>);
-// }
