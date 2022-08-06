@@ -14,7 +14,7 @@ jobs:
         with:
           channel: 'stable'
       - name: Cache CocoaPods modules
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v3
         env:
           cache-number: ${{ secrets.CACHE_NUMBER }}
         with:
@@ -25,7 +25,7 @@ jobs:
             ${{ runner.os }}-pods-
             ${{ runner.os }}-
       - name: Cache Flutter modules
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v3
         env:
           cache-number: ${{ secrets.CACHE_NUMBER }}
         with:
