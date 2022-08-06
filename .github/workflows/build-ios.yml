@@ -1,0 +1,43 @@
+name: Build iOS
+
+on:
+  workflow_call:
+
+jobs:
+  build_ios:
+    name: Build iOS
+    needs: analyze
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - name: Cache CocoaPods modules
+        uses: actions/cache@v2.1.6
+        env:
+          cache-number: ${{ secrets.CACHE_NUMBER }}
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ env.cache-number }}-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-${{ env.cache-name }}-
+            ${{ runner.os }}-pods-
+            ${{ runner.os }}-
+      - name: Cache Flutter modules
+        uses: actions/cache@v2.1.6
+        env:
+          cache-number: ${{ secrets.CACHE_NUMBER }}
+        with:
+          path: |
+            ~/.pub-cache/bin
+          key: ${{ runner.os }}-pub-${{ env.cache-number }}-${{ env.flutter_version }}-${{ hashFiles('pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-${{ env.flutter_version }}-
+            ${{ runner.os }}-pub-
+            ${{ runner.os }}-
+      - run: dart --disable-analytics && flutter config --no-analytics # =)
+      - run: flutter pub get
+      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      - run: flutter pub run flutter_launcher_icons:main && flutter pub run flutter_native_splash:create
+      - run: flutter build ios --release --no-codesign
