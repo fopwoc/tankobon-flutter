@@ -9,13 +9,10 @@ on:
 
 jobs:
   analyze:
-    name: Analyze
     uses: ./.github/workflows/analyze.yml
   build_android:
-    name: Build Android
     needs: analyze
     uses: ./.github/workflows/build-android.yml
   build_ios:
-    name: Build iOS
     needs: analyze
     uses: ./.github/workflows/build-ios.yml
