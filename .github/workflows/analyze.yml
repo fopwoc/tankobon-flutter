@@ -4,9 +4,9 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  analyze:
     name: Analyze and lint
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -23,10 +23,9 @@ jobs:
         run: flutter packages pub run build_runner build --delete-conflicting-outputs
       - name: Linter
         run: flutter analyze --no-fatal-warnings --no-fatal-infos
-      - name: Analyze Dart
-        uses: zgosalvez/github-actions-analyze-dart@v1
+      - name: Analyze Flutter
+        uses: ValentinVignal/action-dart-analyze@v0.14
         with:
-          working-directory: lib
-          fail-on-warnings: false
+          emojis: 'false'
       - name: Verify formatting
         run: dart format --set-exit-if-changed .

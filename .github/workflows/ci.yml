@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - '*'
+
+jobs:
+  analyze:
+    name: Analyze
+    uses: ./.github/workflows/analyze.yml
+  build_android:
+    name: Build Android
+    needs: analyze
+    uses: ./.github/workflows/analyze.yml
+  build_ios:
+    name: Build iOS
+    needs: analyze
+    uses: ./.github/workflows/analyze.yml
