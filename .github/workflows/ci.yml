@@ -14,8 +14,8 @@ jobs:
   build_android:
     name: Build Android
     needs: analyze
-    uses: ./.github/workflows/analyze.yml
+    uses: ./.github/workflows/build-android.yml
   build_ios:
     name: Build iOS
     needs: analyze
-    uses: ./.github/workflows/analyze.yml
+    uses: ./.github/workflows/build-ios.yml
