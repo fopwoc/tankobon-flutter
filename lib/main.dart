@@ -5,7 +5,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tankobon/domain/state/global_state.dart';
 import 'package:tankobon/l10n/l10n.dart';
-import 'package:tankobon/router/router.gr.dart';
+import 'package:tankobon/router/router.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

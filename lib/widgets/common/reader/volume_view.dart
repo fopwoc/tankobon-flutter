@@ -2,9 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tankobon/api/models/manga.dart';
+import 'package:tankobon/router/router.dart';
 import 'package:tankobon/widgets/common/manga/manga_image.dart';
-
-import '../../../router/router.gr.dart';
 
 class VolumeView extends StatelessWidget {
   const VolumeView({super.key, required this.manga});
@@ -22,7 +21,7 @@ class VolumeView extends StatelessWidget {
               padding: EdgeInsets.zero,
               onPressed: () {
                 context.pushRoute(
-                  GalleryView(
+                  GalleryViewRoute(
                     manga: manga,
                     volume: i,
                     chapter: 0,
