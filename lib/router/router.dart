@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tankobon/api/models/manga.dart';
 import 'package:tankobon/views/dashboard.dart';
 import 'package:tankobon/views/decider.dart';
 import 'package:tankobon/views/gallery.dart';
@@ -19,7 +20,7 @@ part 'router.gr.dart';
       path: '/dashboard',
       page: DashboardView,
       children: [
-        AutoRoute(page: RecentView, initial: true),
+        AutoRoute(page: RecentView),
         AutoRoute(page: MangaListView),
         AutoRoute(page: SettingsView),
       ],
