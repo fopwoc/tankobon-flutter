@@ -14,18 +14,9 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - name: Cache Flutter modules
-        uses: actions/cache@v3
-        env:
-          cache-number: ${{ secrets.CACHE_NUMBER }}
-        with:
-          path: |
-            ~/.pub-cache/bin
-          key: ${{ runner.os }}-pub-${{ env.cache-number }}-${{ env.flutter_version }}-${{ hashFiles('pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pub-${{ env.flutter_version }}-
-            ${{ runner.os }}-pub-
-            ${{ runner.os }}-
+          cache: true
+          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+          cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
       - name: Disable analytics
         run: dart --disable-analytics && flutter config --no-analytics # =)
       - name: Install packages

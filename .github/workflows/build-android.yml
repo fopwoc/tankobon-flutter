@@ -19,33 +19,9 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - name: Cache Gradle modules
-        uses: actions/cache@v3
-        env:
-          cache-number: ${{ secrets.CACHE_NUMBER }}
-        with:
-          path: |
-            ~/android/.gradle
-            ~/.gradle/cache
-            # ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ env.cache-number }}-${{ hashFiles('android/build.gradle') }}-${{ hashFiles('android/app/build.gradle') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-${{ env.cache-name }}-${{ hashFiles('android/build.gradle') }}
-            ${{ runner.os }}-gradle-${{ env.cache-name }}-
-            ${{ runner.os }}-gradle-
-            ${{ runner.os }}-
-      - name: Cache Flutter modules
-        uses: actions/cache@v3
-        env:
-          cache-number: ${{ secrets.CACHE_NUMBER }}
-        with:
-          path: |
-            ~/.pub-cache/bin
-          key: ${{ runner.os }}-pub-${{ env.cache-number }}-${{ env.flutter_version }}-${{ hashFiles('pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pub-${{ env.flutter_version }}-
-            ${{ runner.os }}-pub-
-            ${{ runner.os }}-
+          cache: true
+          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+          cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
       - name: Disable analytics
         run: dart --disable-analytics && flutter config --no-analytics # =)
       - name: Install packages
