@@ -1,70 +1,59 @@
-import 'dart:io';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/domain/hooks/spin.dart';
 import 'package:tankobon/domain/models/login.dart';
+import 'package:tankobon/domain/repositories/login.dart';
+import 'package:tankobon/domain/store/login_form.dart';
 import 'package:tankobon/l10n/l10n.dart';
+import 'package:tankobon/router/router.dart';
 import 'package:tankobon/widgets/common/spin_button.dart';
 
 class LoginForm extends HookWidget {
-  const LoginForm({super.key, required this.callback});
-
-  final void Function(LoginPayload) callback;
+  const LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    final instanceController = useTextEditingController();
-    final instanceText = Platform.isAndroid
-        ? useState('http://10.0.2.2:8080')
-        : useState('http://127.0.0.1:8080');
-    instanceController.text = instanceText.value; //DELETE
-
-    final loginController = useTextEditingController();
-    final loginText = useState('user');
-    loginController.text = loginText.value; //DELETE
-
-    final passwordController = useTextEditingController();
-    final passwordText = useState('password');
-    passwordController.text = passwordText.value; //DELETE
+    final store = useMemoized(LoginFormStore.new);
 
     final loginState = useSpin(() async {
-      await Future(
-        () => callback(
+      await Future(() {
+        loginInRepository(
+          context,
           LoginPayload(
-            instance: instanceText.value,
-            username: loginText.value,
-            password: passwordText.value,
+            instance: store.instance,
+            username: store.username,
+            password: store.password,
           ),
-        ),
-      );
+        ).then((value) => context.router.replace(const DeciderViewRoute()));
+      });
     });
 
+    print('${store.instance} ${store.username} ${store.password}');
     return Wrap(
       runSpacing: 16,
       children: <Widget>[
         PlatformTextField(
           hintText: l10n.loginInstanceFieldHint,
           focusNode: useFocusNode(),
-          controller: instanceController,
-          onChanged: (e) => instanceText.value = e,
+          controller: TextEditingController(text: store.instance),
+          onChanged: (e) => store.instance = e,
         ),
         PlatformTextField(
           hintText: l10n.loginUsernameFieldHint,
           focusNode: useFocusNode(),
-          controller: loginController,
-          onChanged: (e) => loginText.value = e,
+          controller: TextEditingController(text: store.username),
+          onChanged: (e) => store.username = e,
         ),
         PlatformTextField(
           hintText: l10n.loginPasswordFieldHint,
           focusNode: useFocusNode(),
-          controller: passwordController,
+          controller: TextEditingController(text: store.password),
           obscureText: true,
           autocorrect: false,
-          onChanged: (e) => passwordText.value = e,
+          onChanged: (e) => store.password = e,
         ),
         Row(
           children: [
