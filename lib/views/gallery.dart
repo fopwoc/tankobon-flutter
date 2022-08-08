@@ -28,6 +28,9 @@ class GalleryView extends HookWidget {
     );
     final mangaSnapshot = useFuture<List<dynamic>>(mangaFuture);
 
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+
     return PlatformScaffold(
       backgroundColor: Colors.black,
       body: mangaSnapshot.connectionState.index == 3
@@ -35,7 +38,11 @@ class GalleryView extends HookWidget {
               builder: (BuildContext context, int index) {
                 return PhotoViewGalleryPageOptions(
                   imageProvider: (mangaSnapshot.data![index] as Image).image,
-                  initialScale: PhotoViewComputedScale.contained,
+                  initialScale: isPortrait
+                      ? PhotoViewComputedScale.contained
+                      : PhotoViewComputedScale.covered,
+                  basePosition:
+                      isPortrait ? Alignment.center : Alignment.topCenter,
                 );
               },
               itemCount: mangaSnapshot.data!.length,
