@@ -16,7 +16,7 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.2.8
   intl: ^0.17.0
-  auto_route: ^5.0.0
+  auto_route: ^5.0.1
   json_annotation: ^4.6.0
   freezed_annotation: ^2.1.0
   provider: ^6.0.3
