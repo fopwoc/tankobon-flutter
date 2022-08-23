@@ -23,7 +23,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   mobx: ^2.0.7+5
   flutter_mobx: ^2.0.6+1
-  isar: ^3.0.0-dev.9
+  isar: ^3.0.0-dev.10
   isar_flutter_libs: ^3.0.0-dev.9
   dio: ^4.0.6
   path_provider: ^2.0.11
