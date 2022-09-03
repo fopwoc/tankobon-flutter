@@ -7,7 +7,7 @@ version: 0.0.1+1
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
-  flutter: 3.0.5
+  flutter: 3.3.0
 
 dependencies:
   flutter:
@@ -24,7 +24,7 @@ dependencies:
   mobx: ^2.0.7+5
   flutter_mobx: ^2.0.6+1
   isar: ^3.0.0-dev.13
-  isar_flutter_libs: ^3.0.0-dev.9
+  isar_flutter_libs: ^3.0.0-dev.13
   dio: ^4.0.6
   path_provider: ^2.0.11
   flutter_platform_widgets: ^2.0.0
@@ -47,7 +47,6 @@ dev_dependencies:
   freezed: ^2.1.0+1
   auto_route_generator: ^5.0.2
   flutter_launcher_icons: ^0.10.0
-  widgetbook: ^2.4.1
 
 flutter:
   uses-material-design: true
