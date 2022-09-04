@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
+import 'package:tankobon/api/models/exception.dart';
 import 'package:tankobon/domain/database/current_instance.dart';
 import 'package:tankobon/domain/database/instances.dart';
 import 'package:tankobon/domain/exception/type/common.dart';
@@ -37,11 +40,7 @@ Future<Response> getHttp(
       },
     );
 
-    if (response.statusCode == 200) {
-      return response;
-    } else {
-      throw CommonException(response.body);
-    }
+    return _statusException(response);
   } catch (e) {
     rethrow;
   }
@@ -74,11 +73,7 @@ Future<Response?> postHttp(
       body: requestBody,
     );
 
-    if (response.statusCode == 200) {
-      return response;
-    } else {
-      throw CommonException(response.body);
-    }
+    return _statusException(response);
   } catch (e) {
     rethrow;
   }
@@ -102,11 +97,7 @@ Future<Response> getHttpNoAuth(
       },
     );
 
-    if (response.statusCode == 200) {
-      return response;
-    } else {
-      throw CommonException(response.body);
-    }
+    return _statusException(response);
   } catch (e) {
     rethrow;
   }
@@ -132,13 +123,42 @@ Future<Response> postHttpNoAuth(
       body: requestBody,
     );
 
-    if (response.statusCode == 200) {
-      return response;
-    } else {
-      throw CommonException(response.body);
-    }
+    return _statusException(response);
   } catch (e) {
     rethrow;
+  }
+}
+
+Response _statusException(Response response) {
+  if (response.statusCode == 200) {
+    return response;
+  } else if (response.statusCode == 401) {
+    final message = BackendException.fromJson(
+      jsonDecode(response.body) as Map<String, dynamic>,
+    );
+    switch (message.type) {
+      case 'token_invalid':
+        throw CommonException('token_invalid');
+      case 'unauthorized':
+        throw CommonException('unauthorized');
+      case 'not_admin':
+        throw CommonException('not_admin');
+      case 'wrong_credentials':
+        throw CommonException('wrong_credentials');
+      default:
+        throw CommonException('401');
+    }
+  } else if (response.statusCode == 500) {
+    final message = BackendException.fromJson(
+      jsonDecode(response.body) as Map<String, dynamic>,
+    );
+    throw CommonException(message.message ?? 'unknown error. Code: 500');
+  } else if (response.statusCode == 400) {
+    throw CommonException('bad request');
+  } else if (response.statusCode == 409) {
+    throw CommonException('already exists');
+  } else {
+    throw CommonException('unknown error. Code: ${response.statusCode}');
   }
 }
 
