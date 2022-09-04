@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  http: ^0.13.5
   flutter_native_splash: ^2.2.8
   intl: ^0.17.0
   auto_route: ^5.0.1
@@ -25,12 +26,10 @@ dependencies:
   flutter_mobx: ^2.0.6+1
   isar: ^3.0.0-dev.13
   isar_flutter_libs: ^3.0.0-dev.13
-  dio: ^4.0.6
   path_provider: ^2.0.11
   flutter_platform_widgets: ^2.0.0
   cupertino_icons: ^1.0.5
   transparent_image: ^2.0.0
-  dartx: ^1.1.0
   collection: ^1.16.0
   photo_view: ^0.14.0
   flutter_svg: ^1.1.4

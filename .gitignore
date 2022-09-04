@@ -53,3 +53,4 @@ app.*.map.json
 
 /android/app/src/main/res/*/*.png
 /ios/Runner/Assets.xcassets/*/*.png
+/libisar.dylib

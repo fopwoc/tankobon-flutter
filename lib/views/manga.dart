@@ -25,7 +25,7 @@ class MangaView extends StatelessWidget {
               Text(manga.title),
               Text(manga.description),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: VolumeView(manga: manga),
               ),
             ],

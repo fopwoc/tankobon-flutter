@@ -22,14 +22,18 @@ class DeciderView extends HookWidget {
       [],
     );
 
-    useEffect(() {
-      if (state.hasInitialized) {
-        FlutterNativeSplash.remove();
-        state.currentInstance != null
-            ? context.router.replace(const DashboardViewRoute())
-            : context.router.replace(const LoginViewRoute());
-      }
-    }, [state.hasInitialized]);
+    useEffect(
+      () {
+        if (state.hasInitialized) {
+          FlutterNativeSplash.remove();
+          state.currentInstance != null
+              ? context.router.replace(const DashboardViewRoute())
+              : context.router.replace(const LoginViewRoute());
+        }
+        return null;
+      },
+      [state.hasInitialized],
+    );
 
     return PlatformScaffold(
       body: Container(),

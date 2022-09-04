@@ -25,9 +25,9 @@ class GlobalState extends ChangeNotifier {
   bool get hasInitialized => _hasInitialized;
 
   void initGlobalState() {
-    getTokenListDatabase().then((value) {
+    getInstanceList().then((value) {
       if (value.isNotEmpty) {
-        getCurrentInstanceDatabase().then((instance) {
+        getCurrentInstance().then((instance) {
           _currentInstance = instance;
         });
       } else {
