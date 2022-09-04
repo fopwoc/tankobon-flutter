@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:tankobon/domain/singletone/http.dart';
 import 'package:tankobon/domain/singletone/isar.dart';
 import 'package:tankobon/domain/state/global_state.dart';
 import 'package:tankobon/l10n/l10n.dart';
@@ -12,6 +13,7 @@ void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  await HttpProvider.init();
   await IsarProvider.init();
 
   final appRouter = AppRouter();

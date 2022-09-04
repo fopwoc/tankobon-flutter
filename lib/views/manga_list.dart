@@ -19,7 +19,6 @@ class MangaListView extends HookWidget {
     final mangaFuture = useMemoized(getMangaList, [reloadKey.value]);
     final mangaSnapshot = useFuture(mangaFuture);
 
-    print("${mangaSnapshot.connectionState.index}");
     return PlatformScaffold(
       appBar: PlatformAppBar(
         title: PlatformText(l10n.dashboardNavBarList),

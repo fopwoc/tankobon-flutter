@@ -24,7 +24,6 @@ class VolumeView extends StatelessWidget {
                   GalleryViewRoute(
                     manga: manga,
                     volume: i,
-                    chapter: 0,
                   ),
                 );
               },

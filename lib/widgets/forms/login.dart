@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:tankobon/domain/exception/handler/common.dart';
 import 'package:tankobon/domain/hooks/spin.dart';
 import 'package:tankobon/domain/models/login.dart';
 import 'package:tankobon/domain/repositories/login.dart';
@@ -20,8 +21,8 @@ class LoginForm extends HookWidget {
     final store = useMemoized(LoginFormStore.new);
 
     final loginState = useSpin(() async {
-      await Future(() {
-        loginInRepository(
+      await genericExceptionHandler(context, () async {
+        await loginInRepository(
           context,
           LoginPayload(
             instance: store.instance,
@@ -32,7 +33,6 @@ class LoginForm extends HookWidget {
       });
     });
 
-    print('${store.instance} ${store.username} ${store.password}');
     return Wrap(
       runSpacing: 16,
       children: <Widget>[

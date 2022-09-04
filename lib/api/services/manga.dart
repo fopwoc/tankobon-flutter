@@ -1,63 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:tankobon/api/dio_client.dart';
+import 'dart:convert';
+
 import 'package:tankobon/api/models/manga.dart';
-import 'package:tankobon/domain/database/current_instance.dart';
-import 'package:tankobon/domain/database/instances.dart';
+import 'package:tankobon/domain/singletone/http.dart';
 
 Future<List<Manga>> getMangaList() async {
-  final token = await getTokenDatabase(await getCurrentInstanceDatabase());
-
-  if (token == null) throw FlutterError('getTokenRepository null');
-
-  final response = await getURL(
-    url: '${token.url}/manga',
-    token: token.accessToken,
-  ).onError((error, stackTrace) => throw FlutterError('$error'));
-
+  final response = await getHttp('/manga');
   final mangaList = <Manga>[];
 
-  for (final item in response.data as List<dynamic>) {
+  for (final item in jsonDecode(response.body) as List<dynamic>) {
     final result = Manga.fromJson(item as Map<String, dynamic>);
     mangaList.add(result);
   }
 
   return mangaList;
-}
-
-Future<Image> getImageFromBackend(
-  String mangaId,
-  int volume,
-  int chapter,
-) async {
-  final token = await getTokenDatabase(await getCurrentInstanceDatabase());
-
-  if (token == null) throw FlutterError('getTokenRepository null');
-
-  final image = Image.network(
-    '${token.url}/manga/$mangaId/$volume/$chapter',
-    headers: {
-      'authorization': 'Bearer ${token.accessToken}',
-    },
-  );
-
-  return image;
-}
-
-Future<Image> getThumbnailFromBackend(
-  String mangaId,
-  int volume,
-  int chapter,
-) async {
-  final token = await getTokenDatabase(await getCurrentInstanceDatabase());
-
-  if (token == null) throw FlutterError('getTokenRepository null');
-
-  final image = Image.network(
-    '${token.url}/thumb/$mangaId/$volume/$chapter',
-    headers: {
-      'authorization': 'Bearer ${token.accessToken}',
-    },
-  );
-
-  return image;
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:tankobon/api/services/manga.dart';
+import 'package:tankobon/api/services/image.dart';
 
 class MangaImage extends StatelessWidget {
   const MangaImage({

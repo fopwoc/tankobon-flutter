@@ -1,16 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:tankobon/api/dio_client.dart';
+import 'dart:convert';
+
 import 'package:tankobon/api/models/token.dart';
 import 'package:tankobon/domain/models/login.dart';
+import 'package:tankobon/domain/singletone/http.dart';
 
 Future<Token> login(LoginPayload form) async {
-  final response = await postURL(
-    url: '${form.instance}/login',
-    requestBody: Login(
-      username: form.username,
-      password: form.password,
-    ).toJson(),
-  ).onError((error, stackTrace) => throw FlutterError('$error'));
+  final response = await postHttpNoAuth(
+    '${form.instance}/login',
+    requestBody: jsonEncode(
+      Login(
+        username: form.username,
+        password: form.password,
+      ).toJson(),
+    ),
+  );
 
-  return Token.fromJson(response?.data as Map<String, dynamic>);
+  return Token.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
 }

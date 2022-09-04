@@ -1,10 +1,19 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tankobon/api/dio_client.dart';
+import 'package:isar/isar.dart';
 import 'package:tankobon/api/models/manga.dart';
-import 'package:tankobon/api/models/token.dart';
 import 'package:tankobon/api/models/user.dart';
+import 'package:tankobon/api/services/login.dart';
+import 'package:tankobon/api/services/manga.dart';
+import 'package:tankobon/api/services/user.dart';
+import 'package:tankobon/domain/database/current_instance.dart';
+import 'package:tankobon/domain/database/instances.dart';
+import 'package:tankobon/domain/models/login.dart';
+import 'package:tankobon/domain/singletone/http.dart';
+import 'package:tankobon/domain/singletone/isar.dart';
 
 String _jsonPrint(dynamic json) {
   const encoder = JsonEncoder.withIndent('  ');
@@ -17,67 +26,48 @@ const user = 'user';
 const pass = 'password';
 
 Future<void> main() async {
-  Future<Token> getToken() async {
-    final payload = <String, String>{
-      'username': user,
-      'password': pass,
-    };
+  await Isar.initializeIsarCore(download: true);
+  TestWidgetsFlutterBinding.ensureInitialized();
 
-    final currentContent = await postURL(
-      url: '$url/login',
-      requestBody: payload,
+  setUpAll(() async {
+    HttpOverrides.global = null;
+
+    await HttpProvider.init();
+    await IsarProvider.init();
+
+    final token = await login(
+      const LoginPayload(
+        instance: url,
+        username: user,
+        password: pass,
+      ),
     );
+    await addInstance(token, url);
+    await setCurrentInstance(token.instanceId);
+  });
 
-    final jsonContent = currentContent?.data as Map<String, dynamic>;
-
-    final result = Token.fromJson(jsonContent);
-    return result;
-  }
-
-  late String token;
-
-  setUp(() async {
-    final tokenData = await getToken();
-    print(tokenData.accessToken);
-    token = tokenData.accessToken;
+  tearDownAll(() async {
+    await IsarProvider.clear();
+    await IsarProvider.close();
   });
 
   test('current user', () async {
-    final currentContent = await getURL(
-      url: '$url/me',
-      token: token,
-    );
+    final result = await getMe();
 
-    final jsonContent = currentContent.data as Map<String, dynamic>;
-    print(_jsonPrint(jsonContent));
-
-    final result = User.fromJson(jsonContent);
-    print('\nresult: ${result.runtimeType} ${result.toJson()}');
-
+    if (kDebugMode) {
+      print(_jsonPrint(result.toJson()));
+    }
     expect(result, isA<User>());
   });
 
   test('manga list', () async {
-    final currentContent = await getURL(
-      url: 'http://localhost:8080/list',
-      token: token,
-    );
+    final result = await getMangaList();
 
-    final jsonContent = currentContent.data as List<dynamic>;
-    print('result length: ${jsonContent.length}');
-
-    final mangaList = <Manga>[];
-
-    for (final item in jsonContent) {
-      print(_jsonPrint(jsonContent.indexOf(item)));
-      print('item index: $item');
-
-      final result = Manga.fromJson(item as Map<String, dynamic>);
-      print('\nresult: ${result.runtimeType} ${result.toJson()}');
-
-      mangaList.add(result);
+    for (final e in result) {
+      if (kDebugMode) {
+        print(_jsonPrint(e.toJson()));
+      }
     }
-
-    expect(mangaList.length, jsonContent.length);
+    expect(result, isA<List<Manga>>());
   });
 }

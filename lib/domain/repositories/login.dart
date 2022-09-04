@@ -11,8 +11,8 @@ Future<void> loginInRepository(
   LoginPayload payload,
 ) async {
   final token = await login(payload);
-  await addTokenDatabase(token, payload.instance);
-  await setCurrentInstanceDatabase(token.instanceId);
+  await addInstance(token, payload.instance);
+  await setCurrentInstance(token.instanceId);
 
   Provider.of<GlobalState>(
     context,
@@ -23,8 +23,8 @@ Future<void> loginInRepository(
 Future<void> loginOutRepository(
   BuildContext context,
 ) async {
-  await delTokenDatabase(await getCurrentInstanceDatabase());
-  await setCurrentInstanceDatabase(null);
+  await delInstance(await getCurrentInstance());
+  await setCurrentInstance(null);
   Provider.of<GlobalState>(
     context,
     listen: false,
