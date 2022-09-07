@@ -12,3 +12,6 @@ jobs:
   lint:
     needs: analyze
     uses: ./.github/workflows/lint.yml
+  pana:
+    needs: analyze
+    uses: ./.github/workflows/pana.yml
