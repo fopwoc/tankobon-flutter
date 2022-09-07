@@ -13,10 +13,11 @@ jobs:
   analyze:
     uses: ./.github/workflows/analyze.yml
   pana:
+    needs: analyze
     uses: ./.github/workflows/pana.yml
   build_android:
-    needs: analyze
+    needs: pana
     uses: ./.github/workflows/build-android.yml
   build_ios:
-    needs: analyze
+    needs: pana
     uses: ./.github/workflows/build-ios.yml
