@@ -25,7 +25,7 @@ dependencies:
   mobx: ^2.0.7+5
   flutter_mobx: ^2.0.6+1
   isar: ^3.0.0-dev.13
-  isar_flutter_libs: ^3.0.0-dev.13
+  isar_flutter_libs: ^3.0.0-dev.14
   path_provider: ^2.0.11
   flutter_platform_widgets: ^2.0.0
   cupertino_icons: ^1.0.5
