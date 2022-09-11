@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tankobon/api/services/login.dart';
@@ -6,7 +7,7 @@ import 'package:tankobon/domain/database/instances.dart';
 import 'package:tankobon/domain/models/login.dart';
 import 'package:tankobon/domain/state/global_state.dart';
 
-Future<void> loginInRepository(
+Future<void> loginIn(
   BuildContext context,
   LoginPayload payload,
 ) async {
@@ -20,13 +21,15 @@ Future<void> loginInRepository(
   ).setGlobalState(token.instanceId);
 }
 
-Future<void> loginOutRepository(
-  BuildContext context,
-) async {
-  await delInstance(await getCurrentInstance());
-  await setCurrentInstance(null);
+Future<void> loginOut(
+  BuildContext context, {
+  String? instance,
+}) async {
+  await delInstance(instance ?? await getCurrentInstance());
+  final newInstance = (await getInstanceList()).firstOrNull?.instanceId;
+  await setCurrentInstance(newInstance);
   Provider.of<GlobalState>(
     context,
     listen: false,
-  ).setGlobalState(null);
+  ).setGlobalState(newInstance);
 }

@@ -6,7 +6,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/domain/exception/handler/common.dart';
 import 'package:tankobon/domain/hooks/spin.dart';
 import 'package:tankobon/domain/models/login.dart';
-import 'package:tankobon/domain/repositories/login.dart';
+import 'package:tankobon/domain/service/login.dart';
 import 'package:tankobon/domain/store/login_form.dart';
 import 'package:tankobon/l10n/l10n.dart';
 import 'package:tankobon/router/router.dart';
@@ -22,7 +22,7 @@ class LoginForm extends HookWidget {
 
     final loginState = useSpin(() async {
       await genericExceptionHandler(context, () async {
-        await loginInRepository(
+        await loginIn(
           context,
           LoginPayload(
             instance: store.instance,

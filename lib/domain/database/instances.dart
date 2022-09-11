@@ -3,9 +3,9 @@ import 'package:tankobon/api/models/token.dart';
 import 'package:tankobon/domain/collections/instance.dart';
 import 'package:tankobon/domain/database/current_instance.dart';
 import 'package:tankobon/domain/exception/type/common.dart';
-import 'package:tankobon/domain/singletone/isar.dart';
+import 'package:tankobon/domain/singleton/isar.dart';
 
-Future<List<Instance?>> getInstanceList() async {
+Future<List<Instance>> getInstanceList() async {
   return IsarProvider.isar.instances.where().findAll();
 }
 
@@ -30,6 +30,18 @@ Future<void> addInstance(Token token, String url) async {
 
   await IsarProvider.isar.writeTxn(() async {
     instance.id = await IsarProvider.isar.instances.put(instance);
+  });
+}
+
+Future<void> updateInstance(Token token, String? instanceId) async {
+  final oldInstance = await getInstance(instanceId);
+  final newInstance = oldInstance
+    ..instanceId = token.instanceId
+    ..accessToken = token.accessToken
+    ..refreshToken = token.refreshToken;
+
+  await IsarProvider.isar.writeTxn(() async {
+    oldInstance.id = await IsarProvider.isar.instances.put(newInstance);
   });
 }
 
