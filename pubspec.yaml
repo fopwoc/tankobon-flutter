@@ -24,7 +24,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   mobx: ^2.0.7+5
   flutter_mobx: ^2.0.6+1
-  isar: ^3.0.0-dev.13
+  isar: ^3.0.0-dev.14
   isar_flutter_libs: ^3.0.0-dev.14
   path_provider: ^2.0.11
   flutter_platform_widgets: ^2.0.0
@@ -32,12 +32,12 @@ dependencies:
   transparent_image: ^2.0.0
   collection: ^1.16.0
   photo_view: ^0.14.0
-  flutter_svg: ^1.1.4
+  flutter_svg: ^1.1.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^3.0.1
+  very_good_analysis: ^3.0.2
   build_runner: ^2.2.0
   flutter_gen_runner: ^4.3.0
   mobx_codegen: ^2.0.7
