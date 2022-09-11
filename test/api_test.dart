@@ -12,8 +12,8 @@ import 'package:tankobon/api/services/user.dart';
 import 'package:tankobon/domain/database/current_instance.dart';
 import 'package:tankobon/domain/database/instances.dart';
 import 'package:tankobon/domain/models/login.dart';
-import 'package:tankobon/domain/singletone/http.dart';
-import 'package:tankobon/domain/singletone/isar.dart';
+import 'package:tankobon/domain/singleton/http.dart';
+import 'package:tankobon/domain/singleton/isar.dart';
 
 String _jsonPrint(dynamic json) {
   const encoder = JsonEncoder.withIndent('  ');

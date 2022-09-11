@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:tankobon/api/models/manga.dart';
-import 'package:tankobon/domain/singletone/http.dart';
+import 'package:tankobon/domain/service/http.dart';
 
 Future<List<Manga>> getMangaList() async {
   final response = await getHttp('/manga');
