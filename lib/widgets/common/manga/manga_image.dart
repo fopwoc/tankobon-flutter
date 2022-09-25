@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:tankobon/api/services/image.dart';
@@ -16,11 +18,11 @@ class MangaImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Image>(
-      future: getThumbnailFromBackend(mangaId, volume, chapter),
-      builder: (BuildContext context, AsyncSnapshot<Image> snapshot) {
+    return FutureBuilder<Uint8List>(
+      future: getImage(mangaId, volume, chapter),
+      builder: (BuildContext context, AsyncSnapshot<Uint8List> snapshot) {
         if (snapshot.hasData) {
-          return snapshot.data!;
+          return Image.memory(snapshot.data!);
         } else if (snapshot.hasError) {
           return const Icon(Icons.error_outline);
         } else {
