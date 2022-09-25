@@ -1,37 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:tankobon/domain/database/current_instance.dart';
-import 'package:tankobon/domain/database/instances.dart';
+import 'dart:typed_data';
 
-Future<Image> getImageFromBackend(
-  String mangaId,
-  int volume,
-  int chapter,
-) async {
-  final token = await getInstance(await getCurrentInstance());
+import 'package:tankobon/domain/service/http.dart';
 
-  final image = Image.network(
-    '${token.url}/manga/$mangaId/$volume/$chapter',
-    headers: {
-      'authorization': 'Bearer ${token.accessToken}',
-    },
-  );
-
-  return image;
+Future<Uint8List> getImage(String mangaId, int volume, int chapter) async {
+  final response = await getHttp('/manga/$mangaId/$volume/$chapter');
+  return response.bodyBytes;
 }
 
-Future<Image> getThumbnailFromBackend(
-  String mangaId,
-  int volume,
-  int chapter,
-) async {
-  final token = await getInstance(await getCurrentInstance());
-
-  final image = Image.network(
-    '${token.url}/thumb/$mangaId/$volume/$chapter',
-    headers: {
-      'authorization': 'Bearer ${token.accessToken}',
-    },
-  );
-
-  return image;
+Future<Uint8List> getImageThumb(String mangaId, int volume, int chapter) async {
+  final response = await getHttp('/thumb/$mangaId/$volume/$chapter');
+  return response.bodyBytes;
 }
