@@ -6,7 +6,9 @@ import 'package:tankobon/gen/assets.gen.dart';
 import 'package:tankobon/widgets/forms/login.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  const LoginView({super.key, this.redirect = true});
+
+  final bool redirect;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,11 @@ class LoginView extends StatelessWidget {
               height: 160,
             ),
             Text('login ${context.router.current.name}'),
-            const Padding(
-              padding: EdgeInsets.all(32),
-              child: LoginForm(),
+            Padding(
+              padding: const EdgeInsets.all(32),
+              child: LoginForm(
+                redirect: redirect,
+              ),
             ),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -6,15 +7,12 @@ import 'package:tankobon/domain/database/current_instance.dart';
 import 'package:tankobon/domain/database/instances.dart';
 import 'package:tankobon/domain/models/login.dart';
 import 'package:tankobon/domain/state/global_state.dart';
+import 'package:tankobon/router/router.dart';
 
-Future<void> loginIn(
-  BuildContext context,
-  LoginPayload payload,
-) async {
+Future<void> loginIn(BuildContext context, LoginPayload payload) async {
   final token = await login(payload);
   await addInstance(token, payload.instance);
   await setCurrentInstance(token.instanceId);
-
   Provider.of<GlobalState>(
     context,
     listen: false,
@@ -32,4 +30,7 @@ Future<void> loginOut(
     context,
     listen: false,
   ).setGlobalState(newInstance);
+  if (newInstance == null) {
+    await context.router.replace(const DeciderViewRoute());
+  }
 }
