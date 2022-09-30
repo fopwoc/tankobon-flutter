@@ -13,7 +13,9 @@ import 'package:tankobon/router/router.dart';
 import 'package:tankobon/widgets/common/spin_button.dart';
 
 class LoginForm extends HookWidget {
-  const LoginForm({super.key});
+  const LoginForm({super.key, this.redirect = true});
+
+  final bool redirect;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,12 @@ class LoginForm extends HookWidget {
             username: store.username,
             password: store.password,
           ),
-        ).then((value) => context.router.replace(const DeciderViewRoute()));
+        );
+        if (redirect) {
+          await context.router.replace(const DeciderViewRoute());
+        } else {
+          Navigator.of(context).pop();
+        }
       });
     });
 
