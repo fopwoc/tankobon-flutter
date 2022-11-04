@@ -28,7 +28,7 @@ class DeciderView extends HookWidget {
           FlutterNativeSplash.remove();
           state.currentInstance != null
               ? context.router.replace(const DashboardViewRoute())
-              : context.router.replace(const LoginViewRoute());
+              : context.router.replace(LoginViewRoute());
         }
         return null;
       },
