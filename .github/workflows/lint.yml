@@ -24,7 +24,7 @@ jobs:
       - name: Codegen
         run: flutter packages pub run build_runner build
       - name: Analyze Flutter
-        uses: ValentinVignal/action-dart-analyze@v0.14
+        uses: ValentinVignal/action-dart-analyze@v0.15
         with:
           emojis: 'false'
       - name: Verify formatting
