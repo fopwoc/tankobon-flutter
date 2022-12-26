@@ -496,7 +496,7 @@ packages:
       name: mobx_codegen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.7+3"
+    version: "2.1.1"
   nested:
     dependency: transitive
     description:
