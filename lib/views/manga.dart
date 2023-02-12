@@ -21,7 +21,7 @@ class MangaView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(context.router.current.name),
-              Text(manga.id),
+              Text(manga.uuid),
               Text(manga.title),
               Text(manga.description),
               Padding(

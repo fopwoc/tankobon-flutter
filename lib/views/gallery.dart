@@ -86,15 +86,20 @@ class GalleryView extends HookWidget {
 
 int _volumeFirstPageIndex(Manga manga, int volume) {
   if (volume <= 0) return 0;
-  return manga.volume.slice(0, volume).reduce((a, b) => a + b);
+
+  return manga.volume
+      .map((e) => e.content.length)
+      .toList()
+      .slice(0, volume)
+      .reduce((a, b) => a + b);
 }
 
 Future<List<Uint8List>> _getMangaImages(Manga manga) async {
   final futureList = [
-    ...manga.volume.mapIndexed((index, element) {
+    ...manga.volume.map((e) => e.content.length).mapIndexed((index, element) {
       final list = <Future<Uint8List>>[];
       for (var i = 0; i < element; i++) {
-        list.add(getImage(manga.id, index, i));
+        list.add(getImage(manga.uuid, index, i));
       }
       return list;
     }).flattened

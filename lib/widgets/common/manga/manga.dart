@@ -15,7 +15,7 @@ class MangaCover extends StatelessWidget {
   Widget build(BuildContext context) {
     return PureMangaCover(
       img: MangaImage(
-        mangaId: manga.id,
+        mangaId: manga.uuid,
         volume: 0,
         chapter: 0,
       ),

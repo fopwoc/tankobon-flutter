@@ -28,7 +28,7 @@ class VolumeView extends StatelessWidget {
                 );
               },
               child: MangaImage(
-                mangaId: manga.id,
+                mangaId: manga.uuid,
                 volume: i,
                 chapter: 0,
               ),
