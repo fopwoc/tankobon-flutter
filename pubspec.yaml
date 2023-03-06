@@ -15,7 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   http: ^0.13.5
-  flutter_native_splash: ^2.2.18
+  flutter_native_splash: ^2.2.19
   intl: ^0.17.0
   auto_route: ^5.0.4
   json_annotation: ^4.8.0
