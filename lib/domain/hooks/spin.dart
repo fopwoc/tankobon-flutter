@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 
 class SpinState {
   SpinState(this._v, this._onClick);
@@ -24,5 +24,6 @@ class SpinState {
 
 SpinState useSpin(Future<void> Function() func) {
   final spinState = useState<bool>(false);
+
   return SpinState(spinState, func);
 }

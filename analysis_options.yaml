@@ -1,13 +1,45 @@
 include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
+  plugins:
+    - dart_code_metrics
+    - custom_lint
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.gr.dart"
     - "**/*.gen.dart"
+  errors:
+    invalid_annotation_target: ignore
 
 linter:
   rules:
     public_member_api_docs: false
     sort_pub_dependencies: false
+    prefer_single_quotes: false
+    prefer_double_quotes: true
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
+    - test/**
+  rules:
+    - avoid-dynamic
+    - avoid-passing-async-when-sync-expected
+    - avoid-redundant-async
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - avoid-nested-conditional-expressions
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    - prefer-trailing-comma
+    - prefer-conditional-expressions
+    - no-equal-then-else
+    - prefer-moving-to-variable
+    - prefer-match-file-name

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import "package:flutter/material.dart";
+import "package:flutter_platform_widgets/flutter_platform_widgets.dart";
 
 Future<T> genericExceptionHandler<T>(
   BuildContext context,
@@ -11,11 +11,11 @@ Future<T> genericExceptionHandler<T>(
     await showPlatformDialog<void>(
       context: context,
       builder: (_) => PlatformAlertDialog(
-        title: const Text('Error'),
+        title: const Text("Error"),
         content: Text(e.toString()),
         actions: <Widget>[
           PlatformDialogAction(
-            child: PlatformText('Ok'),
+            child: PlatformText("Ok"),
             onPressed: () => Navigator.pop(context),
           ),
         ],

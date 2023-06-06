@@ -1,0 +1,23 @@
+appName: "Tankōbon"
+
+login:
+  form:
+    hint:
+      instance: "Instance address"
+      username: "Username"
+      password: "Password"
+    loginButton: "Login in"
+
+dashboard:
+  recent: "Recent"
+  instance: "Instance"
+  settings: "Settings"
+
+recent:
+  title: "Recent"
+
+instance:
+  title: "Instance"
+
+settings:
+  title: "Settings"

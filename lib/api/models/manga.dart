@@ -1,16 +1,17 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'manga.freezed.dart';
-part 'manga.g.dart';
+part "manga.freezed.dart";
+part "manga.g.dart";
 
 @freezed
 class Manga with _$Manga {
   const factory Manga({
-    required String uuid,
+    required String id,
     required String title,
     required String description,
-    required String cover,
-    required List<MangaVolume> volume,
+    required DateTime creation,
+    required DateTime modified,
+    required List<MangaVolume> content,
   }) = _Manga;
 
   factory Manga.fromJson(Map<String, Object?> json) => _$MangaFromJson(json);
@@ -22,13 +23,27 @@ class Manga with _$Manga {
 @freezed
 class MangaVolume with _$MangaVolume {
   const factory MangaVolume({
-    required int order,
+    required String id,
     required String? title,
-    required List<String> content,
+    required List<MangaPage> content,
   }) = _MangaVolume;
 
   factory MangaVolume.fromJson(Map<String, Object?> json) =>
       _$MangaVolumeFromJson(json);
+
+  @override
+  String toString() => toJson().toString();
+}
+
+@freezed
+class MangaPage with _$MangaPage {
+  const factory MangaPage({
+    required String id,
+    required String hash,
+  }) = _MangaPage;
+
+  factory MangaPage.fromJson(Map<String, Object?> json) =>
+      _$MangaPageFromJson(json);
 
   @override
   String toString() => toJson().toString();

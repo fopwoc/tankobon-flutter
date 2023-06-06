@@ -1,0 +1,24 @@
+appName: "Танкобон"
+
+login:
+  form:
+    hint:
+      instance: "Адрес экземпляра"
+      username: "Имя пользователя"
+      password: "Пароль"
+    loginButton: "Войти"
+
+dashboard:
+  recent: "Недавние"
+  instance: "Экземпляр"
+  settings: "Настройки"
+
+recent:
+  title: "Недавние"
+
+instance:
+  title: "Экземпляр"
+
+settings:
+  title: "Настройки"
+

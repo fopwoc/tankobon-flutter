@@ -1,18 +1,26 @@
-import 'package:flutter/material.dart';
-import 'package:tankobon/domain/collections/current_instance.dart';
-import 'package:tankobon/domain/singleton/isar.dart';
+import "package:flutter/material.dart";
+import "package:tankobon/domain/collections/current_instance.dart";
+import "package:tankobon/domain/provider/isar_provider.dart";
+import "package:tankobon/domain/provider/logger_provider.dart";
+
+final schemaName = CurrentInstanceSchema.name;
 
 Future<String> getCurrentInstance() async {
   final result = await IsarProvider.isar.currentInstances.get(0);
-  if (result == null) throw FlutterError('message');
+  if (result == null) throw FlutterError("message");
+  LoggerProvider.fine("ISAR get -> $schemaName ${result.instanceId}");
+
   return result.instanceId;
 }
 
 Future<void> setCurrentInstance(String? instanceId) async {
+  LoggerProvider.fine("ISAR set <- $schemaName $instanceId");
+
   if (instanceId == null) {
     await IsarProvider.isar.writeTxn(() async {
       await IsarProvider.isar.currentInstances.clear();
     });
+
     return;
   }
 

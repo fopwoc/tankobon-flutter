@@ -1,16 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'login.freezed.dart';
-part 'login.g.dart';
-
-@freezed
-class LoginPayload with _$LoginPayload {
-  const factory LoginPayload({
-    required String instance,
-    required String username,
-    required String password,
-  }) = _LoginPayload;
-}
+part "login.freezed.dart";
+part "login.g.dart";
 
 @freezed
 class Login with _$Login {

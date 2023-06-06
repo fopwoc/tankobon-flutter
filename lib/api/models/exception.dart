@@ -1,7 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'exception.freezed.dart';
-part 'exception.g.dart';
+part "exception.freezed.dart";
+part "exception.g.dart";
 
 @freezed
 class BackendException with _$BackendException {

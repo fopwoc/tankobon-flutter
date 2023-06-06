@@ -1,15 +1,16 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:tankobon/api/models/token.dart';
-import 'package:tankobon/domain/database/current_instance.dart';
-import 'package:tankobon/domain/database/instances.dart';
-import 'package:tankobon/domain/models/login.dart';
-import 'package:tankobon/domain/service/http.dart';
+import "package:tankobon/api/models/token.dart";
+import "package:tankobon/domain/database/current_instance.dart";
+import "package:tankobon/domain/database/instances.dart";
+import "package:tankobon/domain/models/login.dart";
+import "package:tankobon/domain/service/http.dart";
+import "package:tankobon/domain/state/form/login_form.dart";
 
-Future<Token> login(LoginPayload form) async {
+Future<Token> login(LoginForm form) async {
   final response = await postHttpNoAuth(
-    '${form.instance}/login',
-    requestBody: jsonEncode(
+    "${form.instance}/auth/login",
+    data: jsonEncode(
       Login(
         username: form.username,
         password: form.password,
@@ -17,7 +18,7 @@ Future<Token> login(LoginPayload form) async {
     ),
   );
 
-  return Token.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  return Token.fromJson(response.data as Map<String, dynamic>);
 }
 
 Future<Token> refresh(String? instanceId) async {
@@ -25,9 +26,9 @@ Future<Token> refresh(String? instanceId) async {
     instanceId ?? await getCurrentInstance(),
   );
   final response = await postHttpNoAuth(
-    '${instance.url}/refresh',
-    requestBody: jsonEncode({'refreshToken': instance.refreshToken}),
+    "${instance.url}/auth/refresh",
+    data: jsonEncode({"refreshToken": instance.refreshToken}),
   );
 
-  return Token.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  return Token.fromJson(response.data as Map<String, dynamic>);
 }

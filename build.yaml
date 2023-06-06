@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      slang_build_runner:
+        options:
+          input_file_pattern: .i18n.yaml
+          input_directory: assets/i18n
+          output_directory: lib/gen
+#      source_gen:combining_builder:
+#        generate_for:
+#          - "**.test.dart"
+#      widgetbook_generator:app_builder:
+#        generate_for:
+#          - "**widgetbook.dart"

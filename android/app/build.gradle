@@ -25,38 +25,49 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(java_version))
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(java_version))
+    }
+}
+
 android {
+    namespace = 'com.example.tankobon.com.tankobon'
+    compileSdk 33
     compileSdkVersion flutter.compileSdkVersion
+    buildToolsVersion '33.0.2'
     ndkVersion flutter.ndkVersion
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
     defaultConfig {
-        applicationId "com.example.tankobon.com.tankobon"
+        applicationId 'com.example.tankobon.com.tankobon'
         compileSdkVersion 33
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.toVersion(java_version.toInteger())
+        targetCompatibility JavaVersion.toVersion(java_version.toInteger())
+    }
+    kotlinOptions {
+        jvmTarget = java_version
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
@@ -67,3 +78,4 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+

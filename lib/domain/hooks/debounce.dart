@@ -1,7 +1,7 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 
 ValueNotifier<T?> useDebounce<T>(T? value, int delay) {
   final debouncedValue = useState(value);
@@ -11,6 +11,7 @@ ValueNotifier<T?> useDebounce<T>(T? value, int delay) {
         Duration(milliseconds: delay),
         () => debouncedValue.value = value,
       );
+
       return timeout.cancel;
     },
     [value],

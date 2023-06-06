@@ -1,6 +1,6 @@
-import 'package:isar/isar.dart';
+import "package:isar/isar.dart";
 
-part 'current_instance.g.dart';
+part "current_instance.g.dart";
 
 @Collection()
 class CurrentInstance {
